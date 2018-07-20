@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>What's for ...</title>
+    <title>Welcome to What's for ...</title>
 
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- <script type="text/javascript" src="./assets/javascript/game.js"></script> -->
+    <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
 
 </head>
 
@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-m-12 centerThis">
-                <input type="text" value="What are you looking for..." onfocus="this.value=''">
+                <input type="text" value="What are you looking for..." onblur="this.placeholder = 'What are you looking for...'">
                 <input type="submit" value="Search">
             </div>
         </div>
