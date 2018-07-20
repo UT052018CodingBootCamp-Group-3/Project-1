@@ -9,6 +9,8 @@ What problem are you solving?
 2. Assigning roles (frontend vs backend development) and psudocoding the project with recommandation
 3. Research which API have the better criteria for the project
 
+:We create a app that the user comes to use when they dont know what they want to eat.
+
 How are you organizing your Backlog?
 
 1. Generate a list of tasks to be completed and priorize the list then assign to an indiviudal to be completed (with dead-line assigned)
@@ -26,4 +28,4 @@ What blockers do you have?
 2.Solution: Watch tutortial, communication with the team to provide solution, share solutions and collaboration to solve problems, asking the professor/TA for advice and suggestions 
 
 Have you identified AND documented the MVP?
-1. Not yet, still working on the API validation and project calls
+1. [Deadline: Saturday 21 2018] Create a miniumal viable product that either 1. Search a given word / ingredance list 2. Given a random result that the user can browse

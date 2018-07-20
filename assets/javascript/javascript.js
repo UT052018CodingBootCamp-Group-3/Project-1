@@ -2,7 +2,7 @@
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var search;
-var queryURL = `https://api.edamam.com/search?q=${sear&app_id=${id}&app_key=${appKey}&from=0&to=3&calories=591-722&health=alcohol-free`
+var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=3&calories=591-722&health=alcohol-free`
 
 $.ajax({
     url: queryURL,
