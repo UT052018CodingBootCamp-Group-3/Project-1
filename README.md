@@ -29,3 +29,8 @@ What blockers do you have?
 
 Have you identified AND documented the MVP?
 1. [Deadline: Saturday 21 2018] Create a miniumal viable product that either 1. Search a given word / ingredance list 2. Given a random result that the user can browse
+
+
+TESTING ADD TESINGNEGJNKJFNAK
+
+TESTING AGAIN WITH COMMIT
