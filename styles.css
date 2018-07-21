@@ -5,6 +5,11 @@
     border-style: solid;
     border-color: aquamarine;
     opacity: .9;
+    color: white;
+}
+
+input#bar{
+
 }
 body{
     
