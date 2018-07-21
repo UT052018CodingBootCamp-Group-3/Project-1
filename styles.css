@@ -21,7 +21,17 @@ body{
 h3{
     color:white;
 }
-
+.form-check-label{
+    color:white;
+}
+input#bar{
+    width:100%;
+}
+/* footer{
+    text-align: center;
+    background: darkblue;
+    color:white;
+} */
 
 .row.content {height: 550px}
 #submit{

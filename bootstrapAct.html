@@ -12,121 +12,63 @@
 
 </head>
 
-<body>
-  <div class="container-fluid">
-    <div class="row content">
-      <div class="col-sm-3 sidenav hidden-xs">
-        <h2>Logo</h2>
-        <div class="col-md-16">
-          <input id="bar" type="text" value="What are you looking for..." onblur="this.placeholder = 'What are you looking for...'"></input>
-          <input id="submit" type="submit" value="Search"></input>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2>Logo</h2>
+      <div class="col-md-16">
+            <input id="bar" type="text" value="What are you looking for..." onblur="this.placeholder = 'What are you looking for...'"></input>
+            <button type="submit" value="Submit">Submit</button>
         </div>
-
-        <div>
-          <h3>Types of food</h3>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="italian">
-          <label class="form-check-label" for="box1">Italian</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="asain">
-          <label class="form-check-label" for="box2">Asian</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="mexican">
-          <label class="form-check-label" for="box3">Mexican</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="american">
-          <label class="form-check-label" for="box4">American</label>
-        </div>
-        <!-- </div>
-        </div> -->
+        
+             <div>
+                 <h3>Types of food</h3>
+             </div>
+             <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="italian">
+                    <label class="form-check-label" for="box1">Italian</label>
+            </div>
+             <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="asain">
+                        <label class="form-check-label" for="box2">Asian</label>
+            </div>
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="mexican">
+                    <label class="form-check-label" for="box3">Mexican</label>
+             </div>   
+             <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="american">
+                    <label class="form-check-label" for="box4">American</label>
+                  </div>
+         
         <br>
-        <div>
-          <h3>Food restriction</h3>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="vegan">
-          <label class="form-check-label" for="box5">Vegan</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="vegitarian">
-          <label class="form-check-label" for="box6">vegitarian</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="paleo">
-          <label class="form-check-label" for="box7">Paleo</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="dairy-free">
-          <label class="form-check-label" for="box8">Dairy-free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="gluten-free">
-          <label class="form-check-label" for="box8">Gluten-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="wheat-free">
-          <label class="form-check-label" for="box8">Wheat-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="fat-free">
-          <label class="form-check-label" for="box8">Fat-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="low-sugar">
-          <label class="form-check-label" for="box8">Low-Sugar</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="egg-free">
-          <label class="form-check-label" for="box8">Egg-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="peanut-free">
-          <label class="form-check-label" for="box8">Peanut-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="tree-nut-free">
-          <label class="form-check-label" for="box8">Tree-Nut-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="soy-free">
-          <label class="form-check-label" for="box8">Soy-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="fish-free">
-          <label class="form-check-label" for="box8">Fish-Free</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="shellfish-free">
-          <label class="form-check-label" for="box8">Shellfish-Free</label>
-        </div>
-      </div>
-      <br>
-      <div>
-        <h3>Diet Style</h3>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="">
-        <label class="form-check-label" for="box5"></label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="">
-        <label class="form-check-label" for="box6"></label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="">
-        <label class="form-check-label" for="box7"></label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="">
-        <label class="form-check-label" for="box8"></label>
-      </div>
-
-      <br>
-    </div>
+            <div>
+                <h3>Food restriction</h3>
+            </div>
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="vegan">
+                    <label class="form-check-label" for="box5">Vegan</label>
+            </div>
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="vegitarian">
+                    <label class="form-check-label" for="box6">vegitarian</label>
+            </div>
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="gluten">
+                    <label class="form-check-label" for="box7">Gluten-free</label>
+            </div>
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dairy">
+                    <label class="form-check-label" for="box8">Dairy-free</label>
+                  </div>
+            <div id="submit">
+                <form>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+    
+    <br>
+   </div>
     <div class="col-sm-9">
       <div class="well">
         <h2>Whats for dinner?</h2>
@@ -154,26 +96,23 @@
           <div class="well">
 
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well">
-
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="well">
-
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well">
-
-          </div>
-        </div>
-      </div>
-
+          <div class="row">
+                <div class="col-sm-6">
+                  <div class="well">
+                   
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="well">
+                   
+                  </div>
+                </div> 
+              </div>
+           
 </body>
+ <!-- <footer>
+                    <small>copyright@</small>
+ </footer> -->
+        
 
 </html>
