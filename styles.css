@@ -1,0 +1,35 @@
+
+ /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+ div{
+    border: 1px;
+    border-style: solid;
+    border-color: aquamarine;
+    opacity: .9;
+}
+body{
+    
+   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center bottom;
+}
+h3{
+    color:white;
+}
+
+
+.row.content {height: 550px}
+#submit{
+    float: right;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  
+  height: 100%;
+}
+    
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 767px) {
+  .row.content {height: auto;} 
+}
