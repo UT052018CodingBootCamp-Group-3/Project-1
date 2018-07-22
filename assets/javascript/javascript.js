@@ -40,6 +40,12 @@ $("#search").click(function () {
     event.preventDefault();
     apiCall(search);
 });
+$("#italian").click(function (){
+    var search = "italian"
+    console.log(search)
+    event.preventDefault()
+    apiCall(search);
+});
 $("#asian").click(function (){
     var search = "asian"
     console.log(search)
