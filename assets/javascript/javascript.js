@@ -71,7 +71,5 @@ $("#thai").click(function (){
     event.preventDefault()
     apiCall(search);
 });
-var search = "steak"
-apiCall(search);
 console.log(random)
 console.log(pickFood)
