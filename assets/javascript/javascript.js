@@ -2,7 +2,7 @@
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var random = Math.floor(Math.random()*5)
-var foods = ["steak","fish","chicken","tacos","rice","potatos"];
+var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi",""];
 var pickFood  = foods[random];
 function apiCall(search) {
 var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
@@ -12,12 +12,12 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
     }).then(function (response) {
     console.log(response);
         // for (let i = 0; i < 6; i++) {
-            $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: " + response.hits[0].recipe.url + "<br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
-            $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: " + response.hits[1].recipe.url + "<br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
-            $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: " + response.hits[2].recipe.url + "<br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
-            $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: " + response.hits[3].recipe.url + "<br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
-            $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: " + response.hits[4].recipe.url + "<br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
-            $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: " + response.hits[5].recipe.url + "<br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
+            $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
+            $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
+            $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
+            $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
+            $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
+            $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
         //}
     });
 }
@@ -33,6 +33,13 @@ $(".healthMore").on("click", function () {
         $(".healthMore").text("See More")
         
     }
+});
+$("#random").click(function (){
+    var search = foods[random];
+    random = Math.floor(Math.random()*5);
+    console.log(search);
+    event.preventDefault();
+    apiCall(search);
 });
 $("#search").click(function () {
 	var search = $("#searchFood").val();
@@ -64,5 +71,7 @@ $("#thai").click(function (){
     event.preventDefault()
     apiCall(search);
 });
+var search = "steak"
+apiCall(search);
 console.log(random)
 console.log(pickFood)
