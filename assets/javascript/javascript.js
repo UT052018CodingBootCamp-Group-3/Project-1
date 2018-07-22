@@ -35,10 +35,28 @@ $(".healthMore").on("click", function () {
     }
 });
 $("#search").click(function () {
-		var search = $("#searchFood").val();
+	var search = $("#searchFood").val();
     console.log(JSON.stringify(search))
     event.preventDefault();
     apiCall(search);
-})
+});
+$("#asian").click(function (){
+    var search = "asian"
+    console.log(search)
+    event.preventDefault()
+    apiCall(search);
+});
+$("#mexican").click(function (){
+    var search = "mexican"
+    console.log(search)
+    event.preventDefault()
+    apiCall(search);
+});
+$("#thai").click(function (){
+    var search = "thai"
+    console.log(search)
+    event.preventDefault()
+    apiCall(search);
+});
 console.log(random)
 console.log(pickFood)
