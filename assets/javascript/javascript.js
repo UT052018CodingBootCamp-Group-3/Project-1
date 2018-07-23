@@ -34,6 +34,12 @@ $(".healthMore").on("click", function () {
         
     }
 });
+var italianChk = $("#italianChk");
+var asianChk = $("#asainChk");
+var mexicanChk = $("#mexicanChk");
+var americanChk = $("americanChk");
+console.log(americanChk);
+
 $("#random").click(function (){
     var search = foods[random];
     random = Math.floor(Math.random()*5);
@@ -42,7 +48,17 @@ $("#random").click(function (){
     apiCall(search);
 });
 $("#search").click(function () {
-	var search = $("#searchFood").val();
+    if (italianChk[0].checked) {
+        var search = "italian " + $("#searchFood").val();
+    } else if(asianChk[0].checked) {
+        var search = "asain " + $("#searchFood").val();
+    } else if (mexicanChk[0].checked) {
+        var search = "mexican " + $("#searchFood").val();
+    } else if (americanChk[0].checked) {
+        var search = "american " + $("#searchFood").val();
+    } else {
+        var search = $("#searchFood").val();
+    }
     console.log(JSON.stringify(search))
     event.preventDefault();
     apiCall(search);
