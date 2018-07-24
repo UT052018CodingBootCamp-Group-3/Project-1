@@ -5,7 +5,7 @@ div{
     border: 1px;
     border-style: solid;
     border-color: aquamarine;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 body{
