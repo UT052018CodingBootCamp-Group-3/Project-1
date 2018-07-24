@@ -14,7 +14,7 @@
 
 <div class="container-fluid page">
   <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs">
+    <div class="col-sm-3 sidenav">
       <h2>Logo</h2>
       <div class="col-md-16">
         <input id="bar" type="text" value="">
@@ -26,19 +26,19 @@
         <h3>Types of food</h3>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="italian">
+        <input type="checkbox" class="form-check-input" id="italian" onclick="checkBox(this)">
         <label class="form-check-label" for="box1">Italian</label>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="asain">
+        <input type="checkbox" class="form-check-input" id="asain"  onclick="return foodOption(this)">
         <label class="form-check-label" for="box2">Asian</label>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="mexican">
+        <input type="checkbox" class="form-check-input" id="mexican" onclick="return foodOption(this)">
         <label class="form-check-label" for="box3">Mexican</label>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="american">
+        <input type="checkbox" class="form-check-input" id="american" onclick="return foodOption(this)">
         <label class="form-check-label" for="box4">American</label>
       </div>
 
