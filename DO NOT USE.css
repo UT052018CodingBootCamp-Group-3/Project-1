@@ -24,35 +24,7 @@ input#bar{
 }
 input[type=submit]{
     width: 30%;
-}
-
-div{
-    border: .1px;
-    border-style: solid;
-    border-color: aquamarine;
-    opacity: 1; 
-    color: black;
-}
-
-body{
-    
-   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
-    background-size:     cover;                     
-    background-repeat:   no-repeat;
-    background-position: center top left;
-    margin: 25px;
-}
-
-h3{
-    color:white;
-}
-
-input#bar{
-    width:70%;
-}
-input[type=submit]{
-    width: 30%;
-    float: right;
+    float: left;
 }
 
 
@@ -82,6 +54,10 @@ input[type=submit]{
 
 .sidenav {
   height: auto;
+}
+
+#submit{
+    float: left;
 }
 
 @media screen and (max-width: 767px) {

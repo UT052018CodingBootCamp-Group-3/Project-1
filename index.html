@@ -1,104 +1,170 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Welcome to What's for ...</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 
 </head>
 
-<body>
-    <!-- <div style="position: fixed; top: -100px; left: -300px; z-index: -99; width: 140%; height: 140%">
-        <iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/ZbofJucjkSU?autoplay=1&controls=0&showinfo=0&autohide=1&mute=1">
-        </iframe>
-    </div> -->
-   
-    <div class="container-fluid">
-        <div class="row content">
-            <div class="col-sm-3 sidenav hidden-xs">
-                <h2>Logo</h2>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Type of food
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       <a class="dropdown-item" href="#" id="italian">Italian</a>
-                       <a class="dropdown-item" href="#" id="asian">Asian</a>
-                       <a class="dropdown-item" href="#" id="mexican">Mexican</a>
-                       <a class="dropdown-item" href="#" id="thai">Thai</a>
-                </div>
-            </div>
-              <br>
-              
-            <div class="col-sm-9">
-                <div class="well">
-                  <h4>Dashboard</h4>
-                    <div class="search">
-                        <div class="col-sm-9">
-                        <input type="text" value="What are you looking for..." onblur="this.placeholder = 'What are you looking for...'" id = "searchFood">
-                        <button class = "search" type=submit id="search">search</button>
-                        <button class = "random" id="random">random</button> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="well" id="target1">
-                      <p>Text</p> 
-                      <p>Text</p> 
-                      <p>Text</p> 
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="well" id="target2">
-                      <p>boomt</p> 
-                      <p>Text</p> 
-                      <p>Text</p> 
-                    </div>
-                </div> 
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                        <div class="well" id="target3">
-                          <p>Text</p> 
-                          <p>Text</p> 
-                          <p>Text</p> 
-                        </div>
-                </div>
-                <div class="col-sm-6">
-                        <div class="well" id="target4">
-                          <p>boomt</p> 
-                          <p>Text</p> 
-                          <p>Text</p> 
-                        </div>
-                </div> 
-            </div>
-            <div class="row">
-                          <div class="col-sm-6">
-                            <div class="well" id="target5">
-                              <p>Text</p> 
-                              <p>Text</p> 
-                              <p>Text</p> 
-                            </div>
-                          </div>
-                <div class="col-sm-6">
-                            <div class="well" id="target6">
-                              <p>text</p> 
-                              <p>Text</p> 
-                              <p>Text</p> 
-                            </div>
-                </div> 
-            </div>
-</body>
-    <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
+<div class="container-fluid page">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h2>Logo</h2>
+      <div class="col-md-16">
+        <input id="searchFood" type="text" value="Keywords..." onfocus="if (this.value == this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue">
+        <input id="search" type="submit" value="Search"></input>
+        </input>
+      </div>
+
+      <div>
+        <h3>Types of food</h3>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="italianChk">
+        <label class="form-check-label" for="box1">Italian</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="asainChk">
+        <label class="form-check-label" for="box2">Asian</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="mexicanChk">
+        <label class="form-check-label" for="box3">Mexican</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="americanChk">
+        <label class="form-check-label" for="box4">American</label>
+      </div>
+
+      <br>
+      <div>
+        <h3>Food restriction</h3>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="vegan">
+        <label class="form-check-label" for="box5">Vegan</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="vegitarian">
+        <label class="form-check-label" for="box6">vegitarian</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="paleo">
+        <label class="form-check-label" for="box7">Paleo</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dairy-free">
+        <label class="form-check-label" for="box8">Dairy-free</label>
+      </div>
+      <div class="hiddenHealth">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="gluten-free">
+          <label class="form-check-label" for="box8">Gluten-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="wheat-free">
+          <label class="form-check-label" for="box8">Wheat-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="fat-free">
+          <label class="form-check-label" for="box8">Fat-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="low-sugar">
+          <label class="form-check-label" for="box8">Low-Sugar</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="egg-free">
+          <label class="form-check-label" for="box8">Egg-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="peanut-free">
+          <label class="form-check-label" for="box8">Peanut-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="tree-nut-free">
+          <label class="form-check-label" for="box8">Tree-Nut-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="soy-free">
+          <label class="form-check-label" for="box8">Soy-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="fish-free">
+          <label class="form-check-label" for="box8">Fish-Free</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="shellfish-free">
+          <label class="form-check-label" for="box8">Shellfish-Free</label>
+        </div>
+      </div>
+      <div class="healthMore">See More</div>
+      <br>
+      <div>
+        <form>
+          <input id="submit" type="submit" value="Search Bottom" id="submit"></input>
+        </form>
+      </div>
+
+      <br>
+    </div>
+    <div class="col-sm-9">
+      <div class="well">
+        <h2>Whats for dinner?</h2>
+        <div class="blurb">
+          <p>Tired of the age old debate of "what sounds good for dinner?" Now through a few simple question we can give you
+            the perfect recipe for dinner!</p>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well" id="target1">
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="well" id="target2">
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well" id="target3">
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="well" id="target4">
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well" id="target5">
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="well" id="target6">
+
+          </div>
+        </div>
+      </div>
+
+      </body>
+      <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
+
 </html>

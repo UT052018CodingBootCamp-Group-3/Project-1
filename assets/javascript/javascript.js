@@ -2,7 +2,7 @@
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var random = Math.floor(Math.random()*5)
-var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
+var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi",""];
 var pickFood  = foods[random];
 function apiCall(search) {
 var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
@@ -24,14 +24,12 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
 $(".healthMore").on("click", function () {
     event.preventDefault();
     var status = $(".healthMore").text()
-    if (status === 'See More')
-    {
+    if (status === 'See More') {
         $(".hiddenHealth").css("display", "block")
         $(".healthMore").text("See Less")
-    }else{
+    } else {
         $(".hiddenHealth").css("display", "none")
         $(".healthMore").text("See More")
-        
     }
 });
 var italianChk = $("#italianChk");
@@ -47,7 +45,7 @@ $("#random").click(function (){
     event.preventDefault();
     apiCall(search);
 });
-$(".submit").click(function () {
+$("#search").click(function () {
     if (italianChk[0].checked) {
         var search = "italian " + $("#searchFood").val();
     } else if(asianChk[0].checked) {
@@ -63,11 +61,6 @@ $(".submit").click(function () {
     event.preventDefault();
     apiCall(search);
 });
-$(".random").click(function () {
-    random = Math.floor(Math.random()*5)
-    var search = foods[random];
-    apiCall(search);
-})
 $("#italian").click(function (){
     var search = "italian"
     console.log(search)
