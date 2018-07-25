@@ -1,4 +1,14 @@
-// console.log("What button was clicked: " + x) // checking what button was pressed
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
+    authDomain: "project-1-88731.firebaseapp.com",
+    databaseURL: "https://project-1-88731.firebaseio.com",
+    projectId: "project-1-88731",
+    storageBucket: "project-1-88731.appspot.com",
+    messagingSenderId: "742279473370"
+  };
+  firebase.initializeApp(config);
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var random = Math.floor(Math.random()*5)
@@ -101,3 +111,7 @@ $("#thai").click(function (){
 });
 console.log(random)
 console.log(pickFood)
+//firebase plans: all your base are belong to us
+//insert each search item into an array
+//check that array each time if the array has the item
+//if the array has the item, dont add it, and count++ an value in firbase and tracks it, if not, add the item and a count of 1
