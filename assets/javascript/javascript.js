@@ -35,7 +35,7 @@ $(".healthMore").on("click", function () {
 var italianChk = $("#italianChk");
 var asianChk = $("#asainChk");
 var mexicanChk = $("#mexicanChk");
-var americanChk = $("americanChk");
+var americanChk = $("#americanChk");
 console.log(americanChk);
 
 $("#random").click(function (){

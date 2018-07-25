@@ -1,42 +1,27 @@
-/* ----------------------- Formatting CSS ----------------------- */
-
-/* presets */
 div{
-    border: 1px;
+    border: .1px;
     border-style: solid;
     border-color: aquamarine;
-    /* height: 100vh; */
+    opacity: 1; 
+    color: black;
 }
 
 body{
-    background-image: url("../images/background.jpg");
+    
+   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
     background-size:     cover;                     
     background-repeat:   no-repeat;
-    background-position: center bottom;
+    background-position: center top left;
+    margin: 25px;
 }
 
-input[type=text]{ /* Input field */
-    width: 298px;
-    height: 50px;
-    padding: 10px;
+h3{
+    color:white;
 }
 
-input[type=submit]{ /* Submit Button */
-    width: 100px;
-    height: 50px;
+input#bar{
+    width:70%;
 }
-
-/* class */
-.centerThis /* Center any element with the class NOTE: WILL CHANGE ELEMENT TO FLEX:DISPLAY*/
-{
-  margin: auto;
-  display: flex;
-    align-items: center;
- height: 100%;
-  width: 400px;
+input[type=submit]{
+    width: 30%;
 }
-
-/* id */
-
-
-/* Functional CSS */
