@@ -11,7 +11,7 @@
 
 
   <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 
 </head>
 
@@ -20,7 +20,7 @@
     <div class="col-sm-3 sidenav">
       <h2>Logo</h2>
       <div class="col-md-16">
-        <input id="searchFood" type="text" value="Keywords..." >
+        <input id="searchFood" type="text" value="Keywords..." onfocus="if (this.value == this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue">
         <input id="search" type="submit" value="Search"></input>
         </input>
       </div>
@@ -108,9 +108,10 @@
         </div>
       </div>
       <div class="healthMore">See More</div>
+      <br>
       <div>
         <form>
-          <input id="submit" type="submit" value="Search" id="submit"></input>
+          <input id="submit" type="submit" value="Search Bottom" id="submit"></input>
         </form>
       </div>
 
