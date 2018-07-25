@@ -1,0 +1,89 @@
+div{
+    border: .1px;
+    border-style: solid;
+    border-color: aquamarine;
+    opacity: 1; 
+    color: black;
+}
+
+body{
+    
+   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center top left;
+    margin: 25px;
+}
+
+h3{
+    color:white;
+}
+
+input#bar{
+    width:70%;
+}
+input[type=submit]{
+    width: 30%;
+}
+
+div{
+    border: .1px;
+    border-style: solid;
+    border-color: aquamarine;
+    opacity: 1; 
+    color: black;
+}
+
+body{
+    
+   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center top left;
+    margin: 25px;
+}
+
+h3{
+    color:white;
+}
+
+input#bar{
+    width:70%;
+}
+input[type=submit]{
+    width: 30%;
+    float: right;
+}
+
+
+
+.hiddenHealth{
+    display: none;
+}
+
+.healthMore{
+    display: block;
+    color: white;
+    text-align: right;
+    padding: 0px 5px;
+}
+
+.form-check{
+    height: 20px;
+}
+
+.form-check-label{
+    color:white;
+}
+
+.row.content {
+    height: 550px
+}
+
+.sidenav {
+  height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .row.content {height: auto;} 
+}

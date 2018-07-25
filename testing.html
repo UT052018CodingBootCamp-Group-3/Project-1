@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome to What's for ...</title>
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- <div style="position: fixed; top: -100px; left: -300px; z-index: -99; width: 140%; height: 140%">
+        <iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/ZbofJucjkSU?autoplay=1&controls=0&showinfo=0&autohide=1&mute=1">
+        </iframe>
+    </div> -->
+   
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav hidden-xs">
+                <h2>Logo</h2>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Type of food
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                       <a class="dropdown-item" href="#" id="italian">Italian</a>
+                       <a class="dropdown-item" href="#" id="asian">Asian</a>
+                       <a class="dropdown-item" href="#" id="mexican">Mexican</a>
+                       <a class="dropdown-item" href="#" id="thai">Thai</a>
+                </div>
+            </div>
+              <br>
+              
+            <div class="col-sm-9">
+                <div class="well">
+                  <h4>Dashboard</h4>
+                    <div class="search">
+                        <div class="col-sm-9">
+                        <input type="text" value="What are you looking for..." onblur="this.placeholder = 'What are you looking for...'" id = "searchFood">
+                        <button class = "search" type=submit id="search">search</button>
+                        <button class = "random" id="random">random</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="well" id="target1">
+                      <p>Text</p> 
+                      <p>Text</p> 
+                      <p>Text</p> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well" id="target2">
+                      <p>boomt</p> 
+                      <p>Text</p> 
+                      <p>Text</p> 
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                        <div class="well" id="target3">
+                          <p>Text</p> 
+                          <p>Text</p> 
+                          <p>Text</p> 
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="well" id="target4">
+                          <p>boomt</p> 
+                          <p>Text</p> 
+                          <p>Text</p> 
+                        </div>
+                </div> 
+            </div>
+            <div class="row">
+                          <div class="col-sm-6">
+                            <div class="well" id="target5">
+                              <p>Text</p> 
+                              <p>Text</p> 
+                              <p>Text</p> 
+                            </div>
+                          </div>
+                <div class="col-sm-6">
+                            <div class="well" id="target6">
+                              <p>text</p> 
+                              <p>Text</p> 
+                              <p>Text</p> 
+                            </div>
+                </div> 
+            </div>
+</body>
+    <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
+</html>
