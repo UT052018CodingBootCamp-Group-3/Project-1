@@ -5,7 +5,8 @@ var random = Math.floor(Math.random()*5)
 var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi",""];
 var pickFood  = foods[random];
 var ingredients = [];
-var holder = [];
+var holder = []
+var ingredients = [];
 function apiCall(search) {
 var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
     $.ajax({
@@ -20,12 +21,17 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
             // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
             // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
             // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
-        for (let i = 0; i < 6; i++) {
-            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> </div>"); 
-        }
-        for (let i = 0; i < response.hits[i].length; i++) {
-            holder.push(response.hits[i]);
+        for (let w = 0; w < 6; w++) {
+            holder.push(response.hits[w].recipe.ingredientLines);
             console.log(holder);
+        }
+        for (let i = 0; i < 6; i++) {
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i +"' > ingredients: </div></div>"); 
+        }
+        for (let i = 0; i < 6; i++){
+            for (let w = 0; w < holder[i].length; w++) {
+                $("#ing" + i).append("<br> " +holder[i][w] + "<br>");
+            }
         }
     });
 }
