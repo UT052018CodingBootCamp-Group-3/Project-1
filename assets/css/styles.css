@@ -4,6 +4,7 @@ div{
     border-color: aquamarine;
     opacity: 1; 
     color: black;
+    
 }
 
 body{
@@ -26,13 +27,13 @@ input[type=submit]{
     width: 30%;
 }
 
-div{
+/* div{
     border: .1px;
     border-style: solid;
     border-color: aquamarine;
     opacity: 1; 
     color: black;
-}
+} */
 
 body{
     
@@ -69,21 +70,36 @@ input[type=submit]{
 }
 
 .form-check{
-    height: 20px;
+    height: 27px;
+    padding: 10px;
+    
 }
-
 .form-check-label{
-    color:white;
+    color: lightgrey;
+    
 }
 
 .row.content {
-    height: 550px
+    height: 550px;
 }
-
 .sidenav {
   height: auto;
+  font-family: serif, ;
+  font-size: 20px;
+  color: whitesmoke;
 }
-
+#searchFood{
+    height: 35px;
+    width: 70%;
+    font-size: 20pt;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: whitesmoke;
+}
+#search{
+    height: 35px;
+    text-align: auto;
+   
+}
 @media screen and (max-width: 767px) {
   .row.content {height: auto;} 
 }
