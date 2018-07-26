@@ -10,7 +10,7 @@
   };
   firebase.initializeApp(config);
   var database = firebase.database();
-
+var proxy = 'https://cors-anywhere.herokuapp.com/';
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
@@ -21,6 +21,12 @@ var holder = []
 var ingredients = [];
 var searchTrack = [];
 var foodCount = 0;
+var ingredientsTrack1 = [];
+var ingredientsTrack2 = [];
+var ingredientsTrack3 = [];
+var ingredientsTrack4 = [];
+var ingredientsTrack5 = [];
+var ingredientsTrack6 = [];
 function apiCall(search) {
 var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
     $.ajax({
@@ -40,6 +46,7 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
         }
         for (let i = 0; i < 6; i++) {
             $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i +"' > ingredients: </div></div>"); 
+            
         }
         for (let i = 0; i < 6; i++){
             for (let w = 0; w < holder[i].length; w++) {
@@ -49,12 +56,13 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
     });
 }
 function apiCall2(search2) {
-    var queryURL2 = 'http://api.walmartlabs.com/v1/items/12417832?apiKey=sf3b2ejzsdwtm6tteesp7bysformat=json'
+    var queryURL2 = `http://api.walmartlabs.com/v1/search?apiKey=3psax5qauewy3f2gtrj5hvyd&query=${search2}`
     $.ajax({
-        url: queryURL2,
+        url: proxy + queryURL2,
         method: "GET"
     }).then(function (response) {
     console.log(response);
+
     });
 }
 $(".healthMore").on("click", function () {
@@ -140,3 +148,4 @@ $("#thai").click(function (){
     event.preventDefault()
     apiCall(search);
 });
+apiCall2("chicken");
