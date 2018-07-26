@@ -1,7 +1,7 @@
 div{
-    border: .1px;
+    /* border: .1px;
     border-style: solid;
-    border-color: aquamarine;
+    border-color: aquamarine; */
     opacity: 1; 
     color: black;
     
@@ -78,7 +78,9 @@ input[type=submit]{
     color: lightgrey;
     
 }
-
+u{
+    color: white;
+}
 .row.content {
     height: 550px;
 }
