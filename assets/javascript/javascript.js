@@ -11,8 +11,8 @@
   firebase.initializeApp(config);
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-var random = Math.floor(Math.random()*5)
-var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi",""];
+var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
+var random = Math.floor(Math.random()*foods.length);
 var pickFood  = foods[random];
 var ingredients = [];
 var holder = []
@@ -45,6 +45,15 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
         }
     });
 }
+function apiCall2(search2) {
+    var queryURL2 = 'http://api.walmartlabs.com/v1/items/12417832?apiKey=sf3b2ejzsdwtm6tteesp7bysformat=json'
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+    }).then(function (response) {
+    console.log(response);
+    });
+}
 $(".healthMore").on("click", function () {
     event.preventDefault();
     var status = $(".healthMore").text()
@@ -60,11 +69,10 @@ var italianChk = $("#italianChk");
 var asianChk = $("#asainChk");
 var mexicanChk = $("#mexicanChk");
 var americanChk = $("#americanChk");
-console.log(americanChk);
 
 $("#random").click(function (){
     var search = foods[random];
-    random = Math.floor(Math.random()*5);
+    random = Math.floor(Math.random()*foods.length);
     console.log(search);
     event.preventDefault();
     apiCall(search);
@@ -109,9 +117,4 @@ $("#thai").click(function (){
     event.preventDefault()
     apiCall(search);
 });
-console.log(random)
-console.log(pickFood)
-//firebase plans: all your base are belong to us
-//insert each search item into an array
-//check that array each time if the array has the item
-//if the array has the item, dont add it, and count++ an value in firbase and tracks it, if not, add the item and a count of 1
+apiCall2("chicken");
