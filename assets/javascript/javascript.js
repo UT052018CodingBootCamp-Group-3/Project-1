@@ -140,4 +140,3 @@ $("#thai").click(function (){
     event.preventDefault()
     apiCall(search);
 });
-apiCall2("chicken");
