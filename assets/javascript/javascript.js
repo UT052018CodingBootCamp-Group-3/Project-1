@@ -9,6 +9,8 @@
     messagingSenderId: "742279473370"
   };
   firebase.initializeApp(config);
+  var database = firebase.database();
+
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
@@ -17,6 +19,8 @@ var pickFood  = foods[random];
 var ingredients = [];
 var holder = []
 var ingredients = [];
+var searchTrack = [];
+var foodCount = 0;
 function apiCall(search) {
 var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
     $.ajax({
@@ -33,7 +37,6 @@ var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=$
             // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
         for (let w = 0; w < 6; w++) {
             holder.push(response.hits[w].recipe.ingredientLines);
-            console.log(holder);
         }
         for (let i = 0; i < 6; i++) {
             $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i +"' > ingredients: </div></div>"); 
@@ -77,6 +80,10 @@ $("#random").click(function (){
     event.preventDefault();
     apiCall(search);
 });
+var objSearch = {
+    food: search,
+    count: 0
+}
 $("#search").click(function () {
     if (italianChk[0].checked) {
         var search = "italian " + $("#searchFood").val();
@@ -89,6 +96,22 @@ $("#search").click(function () {
     } else {
         var search = $("#searchFood").val();
     }
+    if (!(searchTrack.includes(search))) {
+        searchTrack.push(search);
+        objSearch.count = 0;
+        objSearch.count += 1;
+        console.log(objSearch.count)
+        database.ref().child(search).set({
+            count: objSearch.count
+        })
+    } else {
+        objSearch.count += 1;
+        database.ref(search).set({
+            count: objSearch.count 
+        })
+    }
+    
+    console.log(searchTrack);
     console.log(JSON.stringify(search))
     event.preventDefault();
     apiCall(search);
