@@ -9,12 +9,12 @@ var config = {
     messagingSenderId: "742279473370"
 };
 firebase.initializeApp(config);
+
 var database = firebase.database();
 var proxy = 'https://cors-anywhere.herokuapp.com/';
-var id = "15bdf952"
-var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
 var random = Math.floor(Math.random() * foods.length);
+var counter;
 var pickFood = foods[random];
 var ingredients = [];
 var ingredients = [];
@@ -29,19 +29,24 @@ var ingredientsTrack6 = [];
 var pickFood = foods[random];
 var holder = [];
 
-function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image) {
+function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
     $('.searchContent').append(`
-        <div class="col-sm-6"><div class="well listing" id="target${a}">
+        <div class="col-sm-6"><div class="well listing" id="target${counter}">
         <div><h1>${title}</h1></div>
-        <div>Serving: ${serve}</div>
-        <div>Calories: ${calories}</div>
-        <div></div>
-        <div></div>
-        <div><img src="${image}"></img></div>
-        </div></div>
+        <div>Serving Size: ${serve}</div>
+        <div>Calories per Serving: ${calories}</div>
+        <div>Health Labels: ${healthlabel}</div>
+        <div><img class="foodImg" src="${image}"></img></div>
+        <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
     `)
+
+    console.log("Content Setup Ran")
 }
+
 function apiCall(search) {
+
+    var id = "15bdf952"
+    var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 
     var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
 
@@ -51,13 +56,6 @@ function apiCall(search) {
     }).then(function (response) {
         console.log(response);
 
-        // for (let i = 0; i < 6; i++) {
-        // $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
-        // $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
-        // $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
-        // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
-        // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
-        // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
         for (let w = 0; w < 6; w++) {
             holder.push(response.hits[w].recipe.ingredientLines);
         }
@@ -70,32 +68,29 @@ function apiCall(search) {
                 $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
             }
         }
-    });
-}
-function apiCall2(search2) {
-    var queryURL2 = `http://api.walmartlabs.com/v1/search?apiKey=3psax5qauewy3f2gtrj5hvyd&query=${search2}`
-    $.ajax({
-        url: proxy + queryURL2,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        for (let i = 0; i < 6; i++) {
-            // response.hits[i].recipe.label
-            // response.hits[i].recipe.url
-            // response.hits[i].recipe.calories
-            // response.hits[i].recipe.image
 
-            var title = response.hits[i].recipe.label
-            var serve = response.hits[i].recipe.yield
-            var calories = MATH.round(response.hits[i].recipe.calories)
-            var instruction = response.hits[i].recipe.url
-            // var dietLabels = []
-            // var healthLabels = []
-            var image = response.hits[i].recipe.image
+        for (counter = 0; counter < 6; counter++) {
+            var title = response.hits[counter].recipe.label
+            var serve = response.hits[counter].recipe.yield
+            var calories = Math.round(response.hits[counter].recipe.calories / serve)
+            var image = response.hits[counter].recipe.image
+            var url = response.hits[counter].recipe.url
+            var healthlabel;
 
-            contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
+            for (var healthCounter = 0; healthCounter < response.hits[counter].recipe.healthLabels.length; healthCounter++) {
+                if (healthlabel == undefined) {
+                    healthlabel = `<small>${response.hits[counter].recipe.healthLabels[healthCounter]}</small>`
+                }
+                else {
+                    healthlabel += `<small>${response.hits[counter].recipe.healthLabels[healthCounter]}</small>`
+                }
+            }
+
+            contentSetup(counter, title, serve, calories, image, url, healthlabel)
         }
-        console.log("apiCall")
+
+        healthlabel = undefined
+
     });
 }
 
@@ -128,6 +123,8 @@ var objSearch = {
     count: 0
 }
 $("#search").click(function () {
+    event.preventDefault();
+
     if (italianChk[0].checked) {
         var search = "italian " + $("#searchFood").val();
     } else if (asianChk[0].checked) {
@@ -139,6 +136,7 @@ $("#search").click(function () {
     } else {
         var search = $("#searchFood").val();
     }
+
     if (!(searchTrack.includes(search))) {
         searchTrack.push(search);
         objSearch.count = 0;
@@ -156,7 +154,6 @@ $("#search").click(function () {
 
     console.log(searchTrack);
     console.log(JSON.stringify(search))
-    event.preventDefault();
     apiCall(search);
 });
 
@@ -187,4 +184,5 @@ $("#thai").click(function () {
     event.preventDefault()
     apiCall(search);
 });
-apiCall2("chicken");
+
+apiCall("chicken")
