@@ -1,10 +1,32 @@
-// console.log("What button was clicked: " + x) // checking what button was pressed
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
+    authDomain: "project-1-88731.firebaseapp.com",
+    databaseURL: "https://project-1-88731.firebaseio.com",
+    projectId: "project-1-88731",
+    storageBucket: "project-1-88731.appspot.com",
+    messagingSenderId: "742279473370"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+var proxy = 'https://cors-anywhere.herokuapp.com/';
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-var random = Math.floor(Math.random() * 5)
-var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", ""];
-var pickFood = foods[random];
+var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
+var random = Math.floor(Math.random()*foods.length);
+var pickFood  = foods[random];
 var ingredients = [];
+var ingredients = [];
+var searchTrack = [];
+var foodCount = 0;
+var ingredientsTrack1 = [];
+var ingredientsTrack2 = [];
+var ingredientsTrack3 = [];
+var ingredientsTrack4 = [];
+var ingredientsTrack5 = [];
+var ingredientsTrack6 = [];
+var pickFood = foods[random];
 var holder = [];
 
 function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image) {
@@ -19,7 +41,6 @@ function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image
         </div></div>
     `)
 }
-
 function apiCall(search) {
 
     var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
@@ -31,13 +52,36 @@ function apiCall(search) {
         console.log(response);
         
         // for (let i = 0; i < 6; i++) {
-        // $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
-        // $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
-        // $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
-        // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
-        // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
-        // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
-       
+            // $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
+            // $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
+            // $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
+            // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
+            // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
+            // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
+        for (let w = 0; w < 6; w++) {
+            holder.push(response.hits[w].recipe.ingredientLines);
+        }
+        for (let i = 0; i < 6; i++) {
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i +"' > ingredients: </div></div>"); 
+            
+        }
+        for (let i = 0; i < 6; i++){
+            for (let w = 0; w < holder[i].length; w++) {
+                $("#ing" + i).append("<br> " +holder[i][w] + "<br>");
+            }
+        }
+    });
+}
+function apiCall2(search2) {
+    var queryURL2 = `http://api.walmartlabs.com/v1/search?apiKey=3psax5qauewy3f2gtrj5hvyd&query=${search2}`
+    $.ajax({
+        url: proxy + queryURL2,
+        method: "GET"
+    }).then(function (response) {
+    console.log(response);
+
+    });
+}      
         for (let i = 0; i < 6; i++) {
             // response.hits[i].recipe.label
             // response.hits[i].recipe.url
@@ -57,7 +101,6 @@ function apiCall(search) {
         console.log("apiCall")
     });
 }
-
 $(".healthMore").on("click", function () {
     event.preventDefault();
     var status = $(".healthMore").text()
@@ -75,15 +118,17 @@ var asianChk = $("#asainChk");
 var mexicanChk = $("#mexicanChk");
 var americanChk = $("#americanChk");
 
-console.log(americanChk);
-
 $("#random").click(function () {
     var search = foods[random];
-    random = Math.floor(Math.random() * 5);
+    random = Math.floor(Math.random()*foods.length);
     console.log(search);
     event.preventDefault();
     apiCall(search);
 });
+var objSearch = {
+    food: search,
+    count: 0
+}
 $("#search").click(function () {
     if (italianChk[0].checked) {
         var search = "italian " + $("#searchFood").val();
@@ -96,6 +141,22 @@ $("#search").click(function () {
     } else {
         var search = $("#searchFood").val();
     }
+    if (!(searchTrack.includes(search))) {
+        searchTrack.push(search);
+        objSearch.count = 0;
+        objSearch.count += 1;
+        console.log(objSearch.count)
+        database.ref().child(search).set({
+            count: objSearch.count
+        })
+    } else {
+        objSearch.count += 1;
+        database.ref(search).set({
+            count: objSearch.count 
+        })
+    }
+    
+    console.log(searchTrack);
     console.log(JSON.stringify(search))
     event.preventDefault();
     apiCall(search);
@@ -128,6 +189,4 @@ $("#thai").click(function () {
     event.preventDefault()
     apiCall(search);
 });
-
-console.log(random)
-console.log(pickFood)
+apiCall2("chicken");

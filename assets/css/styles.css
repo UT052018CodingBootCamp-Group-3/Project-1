@@ -105,3 +105,9 @@ u{
 @media screen and (max-width: 767px) {
   .row.content {height: auto;} 
 }
+
+.move {
+    position: relative;
+    margin-left: 315px;
+    top: -300px;
+}
