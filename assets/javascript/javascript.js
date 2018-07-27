@@ -1,21 +1,21 @@
 
-  // Initialize Firebase
-  var config = {
+// Initialize Firebase
+var config = {
     apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
     authDomain: "project-1-88731.firebaseapp.com",
     databaseURL: "https://project-1-88731.firebaseio.com",
     projectId: "project-1-88731",
     storageBucket: "project-1-88731.appspot.com",
     messagingSenderId: "742279473370"
-  };
-  firebase.initializeApp(config);
-  var database = firebase.database();
+};
+firebase.initializeApp(config);
+var database = firebase.database();
 var proxy = 'https://cors-anywhere.herokuapp.com/';
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-var foods = ["steak","fish","chicken","tacos","rice","potatos","sushi","apples"];
-var random = Math.floor(Math.random()*foods.length);
-var pickFood  = foods[random];
+var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
+var random = Math.floor(Math.random() * foods.length);
+var pickFood = foods[random];
 var ingredients = [];
 var ingredients = [];
 var searchTrack = [];
@@ -50,24 +50,24 @@ function apiCall(search) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-        
+
         // for (let i = 0; i < 6; i++) {
-            // $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
-            // $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
-            // $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
-            // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
-            // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
-            // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
+        // $("#target1").html("<div class = 'float-left'> Recipe: " + response.hits[0].recipe.label + "<br> recipe URL: <a src=" + response.hits[0].recipe.url + ">" + response.hits[0].recipe.url + "</a><br> calories: " + response.hits[0].recipe.calories + "<br> <img src=" + response.hits[0].recipe.image + "> <br><br> </div>");
+        // $("#target2").html("<div class = 'float-left'> Recipe: " + response.hits[1].recipe.label + "<br> recipe URL: <a src=" + response.hits[1].recipe.url + ">" + response.hits[1].recipe.url + "</a><br> calories: " + response.hits[1].recipe.calories + "<br> <img src=" + response.hits[1].recipe.image + "> <br><br> </div>");
+        // $("#target3").html("<div class = 'float-left'> Recipe: " + response.hits[2].recipe.label + "<br> recipe URL: <a src=" + response.hits[2].recipe.url + ">" + response.hits[2].recipe.url + "</a><br> calories: " + response.hits[2].recipe.calories + "<br> <img src=" + response.hits[2].recipe.image + "> <br><br> </div>");
+        // $("#target4").html("<div class = 'float-left'> Recipe: " + response.hits[3].recipe.label + "<br> recipe URL: <a src=" + response.hits[3].recipe.url + ">" + response.hits[3].recipe.url + "</a><br> calories: " + response.hits[3].recipe.calories + "<br> <img src=" + response.hits[3].recipe.image + "> <br><br> </div>");
+        // $("#target5").html("<div class = 'float-left'> Recipe: " + response.hits[4].recipe.label + "<br> recipe URL: <a src=" + response.hits[4].recipe.url + ">" + response.hits[4].recipe.url + "</a><br> calories: " + response.hits[4].recipe.calories + "<br> <img src=" + response.hits[4].recipe.image + "> <br><br> </div>");
+        // $("#target6").html("<div class = 'float-left'> Recipe: " + response.hits[5].recipe.label + "<br> recipe URL: <a src=" + response.hits[5].recipe.url + ">" + response.hits[5].recipe.url + "</a><br> calories: " + response.hits[5].recipe.calories + "<br> <img src=" + response.hits[5].recipe.image + "> <br><br> </div>");
         for (let w = 0; w < 6; w++) {
             holder.push(response.hits[w].recipe.ingredientLines);
         }
         for (let i = 0; i < 6; i++) {
-            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i +"' > ingredients: </div></div>"); 
-            
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+
         }
-        for (let i = 0; i < 6; i++){
+        for (let i = 0; i < 6; i++) {
             for (let w = 0; w < holder[i].length; w++) {
-                $("#ing" + i).append("<br> " +holder[i][w] + "<br>");
+                $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
             }
         }
     });
@@ -78,10 +78,7 @@ function apiCall2(search2) {
         url: proxy + queryURL2,
         method: "GET"
     }).then(function (response) {
-    console.log(response);
-
-    });
-}      
+        console.log(response);
         for (let i = 0; i < 6; i++) {
             // response.hits[i].recipe.label
             // response.hits[i].recipe.url
@@ -92,14 +89,16 @@ function apiCall2(search2) {
             var serve = response.hits[i].recipe.yield
             var calories = MATH.round(response.hits[i].recipe.calories)
             var instruction = response.hits[i].recipe.url
-            var dietLabels = []
-            var healthLabels = []
+            // var dietLabels = []
+            // var healthLabels = []
             var image = response.hits[i].recipe.image
 
             contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
         }
+        console.log("apiCall")
     });
 }
+
 $(".healthMore").on("click", function () {
     event.preventDefault();
     var status = $(".healthMore").text()
@@ -119,7 +118,7 @@ var americanChk = $("#americanChk");
 
 $("#random").click(function () {
     var search = foods[random];
-    random = Math.floor(Math.random()*foods.length);
+    random = Math.floor(Math.random() * foods.length);
     console.log(search);
     event.preventDefault();
     apiCall(search);
@@ -151,10 +150,10 @@ $("#search").click(function () {
     } else {
         objSearch.count += 1;
         database.ref(search).set({
-            count: objSearch.count 
+            count: objSearch.count
         })
     }
-    
+
     console.log(searchTrack);
     console.log(JSON.stringify(search))
     event.preventDefault();
