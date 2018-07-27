@@ -2,7 +2,6 @@ div{
     border: .1px;
     border-style: solid;
     border-color: aquamarine;
-    opacity: 1; 
     color: black;
 }
 
@@ -83,6 +82,11 @@ input[type=submit]{
 .sidenav {
   height: auto;
 }
+
+.listing {
+    opacity: .8; 
+}
+
 
 @media screen and (max-width: 767px) {
   .row.content {height: auto;} 
