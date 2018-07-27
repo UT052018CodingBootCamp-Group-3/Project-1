@@ -31,13 +31,15 @@ var holder = [];
 
 function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
     $('.searchContent').append(`
-        <div class="col-sm-6"><div class="well listing" id="target${counter}">
+        <div class="col-sm-6">
+        <div class="well listing" id="target${counter}">
         <div><h1>${title}</h1></div>
         <div>Serving Size: ${serve}</div>
         <div>Calories per Serving: ${calories}</div>
         <div>Health Labels: ${healthlabel}</div>
         <div><img class="foodImg" src="${image}"></img></div>
         <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
+        </div>
     `)
 
     console.log("Content Setup Ran")
@@ -48,8 +50,7 @@ function apiCall(search) {
     $('.well.header').css("display", "none")
     var id = "15bdf952"
     var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-
-    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
+    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&health=peanut-free&from=0&to=6`
 
     $.ajax({
         url: queryURL,
@@ -78,7 +79,7 @@ function apiCall(search) {
             var url = response.hits[counter].recipe.url
             var healthlabel;
 
-            for (var healthCounter = 0; healthCounter < response.hits[counter].recipe.healthLabels.length; healthCounter++) {
+            for (healthCounter = 0; healthCounter < response.hits[counter].recipe.healthLabels.length; healthCounter++) {
                 if (healthlabel == undefined) {
                     healthlabel = `<small>${response.hits[counter].recipe.healthLabels[healthCounter]}</small>`
                 }
@@ -86,12 +87,9 @@ function apiCall(search) {
                     healthlabel += `<small>${response.hits[counter].recipe.healthLabels[healthCounter]}</small>`
                 }
             }
-
             contentSetup(counter, title, serve, calories, image, url, healthlabel)
+            healthlabel = undefined // Resetting healthLabel for next iteration of labels
         }
-
-        healthlabel = undefined
-
     });
 }
 
@@ -209,11 +207,11 @@ function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
             $self.animate({ width: $words.eq(c).width() });
             $words.stop().fadeOut().eq(c).fadeIn().delay(1000).show(0, loop);
             c = ++c % tot;
-            console.log("Text Rotation")
+            // console.log("Text Rotation") //Working
         }());
 
     });
 }
 
 dataWord()
-// apiCall("chicken")
+apiCall("chicken")
