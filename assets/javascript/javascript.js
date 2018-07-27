@@ -22,7 +22,7 @@ function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image
 
 function apiCall(search) {
 
-    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
+    var queryURL = `tesing`
 
     $.ajax({
         url: queryURL,
