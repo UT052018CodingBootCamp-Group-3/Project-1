@@ -54,6 +54,7 @@ function apiCall(search) {
 
             contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
         }
+        console.log("apiCall")
     });
 }
 
