@@ -62,7 +62,7 @@ function apiCall(search) {
             holder.push(response.hits[w].recipe.ingredientLines);
         }
         for (let i = 0; i < 6; i++) {
-            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + Math.round(response.hits[i].recipe.calories) + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
 
         }
         for (let i = 0; i < 6; i++) {
@@ -70,15 +70,17 @@ function apiCall(search) {
                 $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
             }
         }
+        for (let i = 0; i < 6; i++) {
         var title = response.hits[i].recipe.label
         var serve = response.hits[i].recipe.yield
-        var calories = MATH.round(response.hits[i].recipe.calories)
+        var calories = Math.round(response.hits[i].recipe.calories)
         var instruction = response.hits[i].recipe.url
         // var dietLabels = []
         // var healthLabels = []
         var image = response.hits[i].recipe.image
 
         contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
+        }
     });
 }
 
@@ -88,7 +90,9 @@ function apiCall2(search2) {
         url: proxy + queryURL2,
         method: "GET"
     }).then(function (response) {
-        
+        console.log(response);
+        $("#walmart").append(response.items[0].name)
+        $("#walmart").append(response.items[1].name)
     });
 }
 
