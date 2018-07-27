@@ -48,8 +48,8 @@ function apiCall(search) {
             var serve = response.hits[i].recipe.yield
             var calories = MATH.round(response.hits[i].recipe.calories)
             var instruction = response.hits[i].recipe.url
-            var dietLabels = []
-            var healthLabels = []
+            // var dietLabels = []
+            // var healthLabels = []
             var image = response.hits[i].recipe.image
 
             contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
