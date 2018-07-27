@@ -21,12 +21,12 @@
     <div class="col-sm-3 sidenav">
       <div class="col-md-16">
         <input id="searchFood" type="text" value="Keywords..." onfocus="if (this.value == this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue">
-        <input id="search" type="submit" value="Search"></input>
+        <input class="submit" id="search" type="submit" value="Search"></input>
         </input>
       </div>
 
-      <div>
-       <u><h3>Types of food</h3></u>
+      <div class="subHead">
+        <h3>Types of food</h3>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="italianChk">
@@ -44,10 +44,9 @@
         <input type="checkbox" class="form-check-input" id="americanChk">
         <label class="form-check-label" for="box4">American</label>
       </div>
-
-      <br>
-      <div>
-        <u><h3>Food restriction</h3></u>
+      <div class="subFoot"></div>
+      <div class="subHead">
+        <h3>Food restriction</h3>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="vegan">
@@ -65,6 +64,7 @@
         <input type="checkbox" class="form-check-input" id="dairy-free">
         <label class="form-check-label" for="box8">Dairy-free</label>
       </div>
+
       <div class="hiddenHealth">
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="gluten-free">
@@ -107,11 +107,11 @@
           <label class="form-check-label" for="box8">Shellfish-Free</label>
         </div>
       </div>
-      <div class="healthMore">See More</div>
+      <div class="healthMore subFoot">SEE MORE</div>
+      <!-- ORI SEE MORE -->
       <div>
-        <form>
-          <input id="submit" type="submit" value="Search" id="submit"></input>
-        </form>
+        <br>
+        <input class="submit2" id="search" type="submit" value="Search"></input>
       </div>
 
       <br>
@@ -124,40 +124,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="searchContent">HELLO</div>
-        <!-- <div class="col-sm-6">
-          <div class="well" id="target0">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well" id="target1">
-
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="well" id="target2">
-
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well" id="target3">
-
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="well" id="target4">
-
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well" id="target5">
-
-          </div>
-        </div> -->
+        <div class="searchContent"></div>
+        <!--CONTENT-->
       </div>
 
       </body>

@@ -4,7 +4,6 @@ div{
     border-color: aquamarine; */
     opacity: 1; 
     color: black;
-    
 }
 
 small{
@@ -24,10 +23,16 @@ h3{
     color:white;
 }
 
-input[type=submit]{
-    width: 29%;
+input[class=submit]{
+    width: 30%;
     margin: 0px;
     float: right;
+}
+
+input[class=submit2]{
+    width: 100%;
+    margin: 0px;
+    height: 35px;
 }
 
 body{
@@ -35,13 +40,28 @@ body{
    background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
     background-size:     cover;                     
     background-repeat:   no-repeat;
-    background-position: center top left;
-    margin: 25px;
-    /* width: 800px; */
+    background-position: center top;
+    background-attachment: fixed;
+    margin: auto;
+    padding: 50px 0px;
+    width: 1000px;
 }
 
-u{
-    color: white;
+.subHead{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: aqua;
+    height: 30px;
+    padding: 10px;
+    margin: 20px 0px 0px 0px;
+}
+
+.subFoot{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: aqua;
+    height: 20px;
+    margin: 0px;
 }
 
 .hiddenHealth{
@@ -49,25 +69,21 @@ u{
 }
 
 .healthMore{
-    display: block;
-    color: white;
-    text-align: right;
-    padding: 0px 5px;
+    text-align: center;
 }
 
 .searchContent{
-    width:  60vw;
+    width:  100%;
 }
 
 .form-check{
     height: 27px;
-    padding: 10px;
+    padding: 0px 10px;
     
 }
 
 .form-check-label{
-    color: lightgrey;
-    
+    color: lightgrey;    
 }
 
 .row.content {

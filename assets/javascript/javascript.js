@@ -94,15 +94,18 @@ function apiCall(search) {
     });
 }
 
-$(".healthMore").on("click", function () {
+$('.healthMore.subFoot').on("click", function () {
     event.preventDefault();
+
+    console.log("See More Clicked")
+
     var status = $(".healthMore").text()
-    if (status === 'See More') {
+    if (status === 'SEE MORE') {
         $(".hiddenHealth").css("display", "block")
-        $(".healthMore").text("See Less")
+        $(".healthMore").text("SEE LESS")
     } else {
         $(".hiddenHealth").css("display", "none")
-        $(".healthMore").text("See More")
+        $(".healthMore").text("SEE MORE")
     }
 });
 
@@ -185,4 +188,4 @@ $("#thai").click(function () {
     apiCall(search);
 });
 
-apiCall("chicken")
+// apiCall("chicken")
