@@ -1,4 +1,3 @@
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
@@ -41,6 +40,7 @@ function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image
         </div></div>
     `)
 }
+
 function apiCall(search) {
 
     var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=0&to=6`
@@ -70,32 +70,25 @@ function apiCall(search) {
                 $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
             }
         }
+        var title = response.hits[i].recipe.label
+        var serve = response.hits[i].recipe.yield
+        var calories = MATH.round(response.hits[i].recipe.calories)
+        var instruction = response.hits[i].recipe.url
+        // var dietLabels = []
+        // var healthLabels = []
+        var image = response.hits[i].recipe.image
+
+        contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
     });
 }
+
 function apiCall2(search2) {
     var queryURL2 = `http://api.walmartlabs.com/v1/search?apiKey=3psax5qauewy3f2gtrj5hvyd&query=${search2}`
     $.ajax({
         url: proxy + queryURL2,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        for (let i = 0; i < 6; i++) {
-            // response.hits[i].recipe.label
-            // response.hits[i].recipe.url
-            // response.hits[i].recipe.calories
-            // response.hits[i].recipe.image
-
-            var title = response.hits[i].recipe.label
-            var serve = response.hits[i].recipe.yield
-            var calories = MATH.round(response.hits[i].recipe.calories)
-            var instruction = response.hits[i].recipe.url
-            // var dietLabels = []
-            // var healthLabels = []
-            var image = response.hits[i].recipe.image
-
-            contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
-        }
-        console.log("apiCall")
+        
     });
 }
 
@@ -115,7 +108,7 @@ var italianChk = $("#italianChk");
 var asianChk = $("#asainChk");
 var mexicanChk = $("#mexicanChk");
 var americanChk = $("#americanChk");
-$("#searchWm").click(function() {
+$("#searchWm").click(function () {
     var search2 = $("#searchWalmart").val();
     apiCall2(search2);
 });
