@@ -116,10 +116,13 @@
       <br>
       <br>
       <div class="col-md-20">
-        <input id="searchWm" type="text" value="Walmart..." >
-        <input id="search" type="submit" value="Search"></input>
+        <input id="searchWalmart" type="text" value="Walmart Price Lookup" onfocus="if (this.value == this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue" >
+        <input id="searchWm" type="submit" value="Search"></input>
         </input>
       </div>
+      <br>
+      <br>
+      <div class="col-md-20 well" id="walmart"></div>
       <br>
     </div>
     <div class="col-sm-9">

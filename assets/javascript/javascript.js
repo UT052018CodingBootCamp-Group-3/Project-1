@@ -115,7 +115,10 @@ var italianChk = $("#italianChk");
 var asianChk = $("#asainChk");
 var mexicanChk = $("#mexicanChk");
 var americanChk = $("#americanChk");
-
+$("#searchWm").click(function() {
+    var search2 = $("#searchWalmart").val();
+    apiCall2(search2);
+});
 $("#random").click(function () {
     var search = foods[random];
     random = Math.floor(Math.random() * foods.length);
@@ -187,4 +190,3 @@ $("#thai").click(function () {
     event.preventDefault()
     apiCall(search);
 });
-apiCall2("chicken");
