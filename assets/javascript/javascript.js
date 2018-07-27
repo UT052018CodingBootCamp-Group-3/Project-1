@@ -45,6 +45,7 @@ function contentSetup(counter, title, serve, calories, image, url, healthlabel) 
 
 function apiCall(search) {
 
+    $('.well.header').css("display", "none")
     var id = "15bdf952"
     var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 
@@ -188,4 +189,31 @@ $("#thai").click(function () {
     apiCall(search);
 });
 
+function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
+
+
+    $("[data-words]").attr("data-words", function (i, d) {
+        var $self = $(this),
+            $words = d.split("|"),
+            tot = $words.length,
+            c = 0;
+
+        // CREATE SPANS INSIDE SPAN
+        for (var i = 0; i < tot; i++) $self.append($('<span/>', { text: $words[i] }));
+
+        // COLLECT WORDS AND HIDE
+        $words = $self.find("span").hide();
+
+        // ANIMATE AND LOOP
+        (function loop() {
+            $self.animate({ width: $words.eq(c).width() });
+            $words.stop().fadeOut().eq(c).fadeIn().delay(1000).show(0, loop);
+            c = ++c % tot;
+            console.log("Text Rotation")
+        }());
+
+    });
+}
+
+dataWord()
 // apiCall("chicken")

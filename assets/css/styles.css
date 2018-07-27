@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'CustomFontCursive';
+    src: url('../font/AguafinaScript-Regular.ttf'); /* IE9 Compat Modes */
+  }
+
 div{
     /* border: .1px;
     border-style: solid;
@@ -45,6 +50,14 @@ body{
     margin: auto;
     padding: 50px 0px;
     width: 1000px;
+}
+
+.well.header{
+    height: 40px;
+    font-size: 50px;
+    font-family: CustomFontCursive;
+    padding-left: 50px;
+    display: block;
 }
 
 .subHead{
@@ -128,3 +141,16 @@ body{
 @media screen and (max-width: px) {
   .row.content {height: auto;} 
 } */
+
+
+[data-words]{
+    vertical-align: top;
+    position: static;
+}
+
+[data-words] > span{
+    position: absolute;
+    color: chocolate;
+    font-size: 50px;
+    font-family: CustomFontCursive;
+}
