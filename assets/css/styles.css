@@ -166,11 +166,22 @@ body{
 #search{
     height: 35px;
     text-align: auto;
-   
 }
 
 /* 
 @media screen and (max-width: px) {
+#searchWm{
+    width: 100%
+
+}
+#calc{
+    color: black;
+}
+#calcClear{
+    color: black;
+}
+   
+@media screen and (max-width: 767px) {
   .row.content {height: auto;} 
 } */
 

@@ -1,4 +1,3 @@
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBWw4Q9Cos4t6dDtXaNm7uEluk3pw68tT4",
@@ -116,6 +115,18 @@ function navSetup() {
 }
 
 function contentSetup(counter, title, serve, calories, image, url, healthlabel, ingredient) {
+var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
+var random = Math.floor(Math.random() * foods.length);
+var pickFood = foods[random];
+var ingredients = [];
+var searchTrack = [];
+var foodCount = 0;
+var pickFood = foods[random];
+var holder = [];
+var prices = [];
+var total = 0;
+
+function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image) {
     $('.searchContent').append(`
         <div class="col-sm-12 hiddenItem">
             <div class="col-sm-3"><img class="foodImg" src="${image}"></img></div>
@@ -150,10 +161,11 @@ function apiCall(search) {
         //     holder.push(response.hits[w].recipe.ingredientLines);
         // }
         // for (let i = 0; i < 6; i++) {
-        //     $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label +
-        //"<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " +
-        // response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class
-        // = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+        for (let w = 0; w < 6; w++) {
+            holder.push(response.hits[w].recipe.ingredientLines);
+        }
+        for (let i = 0; i < 6; i++) {
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + Math.round(response.hits[i].recipe.calories) + "<br> <img class = 'float-left' src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left' id='ing" + i + "' > ingredients: </div></div>");
 
         // }
         // for (let i = 0; i < 6; i++) {
@@ -227,6 +239,88 @@ $('.3rd').on('click', '.healthMore', function () { //IMPORTANT FOR THIS; DYNAMIC
 
     var status = $(".subFoot.healthMore").text()
     if (status === 'SEE MORE') {
+        for (let i = 0; i < 6; i++) {
+        var title = response.hits[i].recipe.label
+        var serve = response.hits[i].recipe.yield
+        var calories = Math.round(response.hits[i].recipe.calories)
+        var instruction = response.hits[i].recipe.url
+        // var dietLabels = []
+        // var healthLabels = []
+        var image = response.hits[i].recipe.image
+
+        contentSetup(i, title, serve, calories, dietLabels, healthLabels, image)
+        }
+    });
+}
+
+function apiCall2(search2) {
+    var queryURL2 = `http://api.walmartlabs.com/v1/search?apiKey=3psax5qauewy3f2gtrj5hvyd&query=${search2}`
+    $.ajax({
+        url: proxy + queryURL2,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        $("#walmart").empty();
+        for (let i = 0; i < response.items.length; i++) {
+            $("#walmart").append(response.items[i].name + "<br> sale price: <p id = 'price" + i + "' value = '" + response.items[i].salePrice +"'>$" + response.items[i].salePrice + "</p><br> <br>")
+     }
+    });
+}
+$(document).on("click", "#price0", function(){
+    prices.push(Number(document.getElementById("price0").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price1", function(){
+    prices.push(Number(document.getElementById("price1").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price2", function(){
+    prices.push(Number(document.getElementById("price2").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price3", function(){
+    prices.push(Number(document.getElementById("price3").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price4", function(){
+    prices.push(Number(document.getElementById("price4").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price5", function(){
+    prices.push(Number(document.getElementById("price5").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price6", function(){
+    prices.push(Number(document.getElementById("price6").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price7", function(){
+    prices.push(Number(document.getElementById("price7").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price8", function(){
+    prices.push(Number(document.getElementById("price8").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price9", function(){
+    prices.push(Number(document.getElementById("price9").getAttribute("value")));
+    console.log(prices);
+});
+$("#calc").click( function () {
+    for (let i = 0; i < prices.length; i++) {
+        total = total + prices[i];
+    }
+    $("#total").text(total);
+});
+$("#calcClear").click(function () {
+    $("#total").text("");
+    total = 0;
+    prices =  [];
+});
+$(".healthMore").on("click", function () {
+    event.preventDefault();
+    var status = $(".healthMore").text()
+    if (status === 'See More') {
         $(".hiddenHealth").css("display", "block")
         $(".subFoot.healthMore").text("SEE LESS")
     } else {
@@ -247,7 +341,15 @@ $('body').on('click', '.col-sm-12 .moreResult', function () {
 
     $('.searchContent .col-sm-12.hiddenItem:hidden').slice(0, 6).slideDown();
 });
-
+$("#searchWm").click(function () {
+    var search2 = $("#searchWalmart").val();
+    apiCall2(search2);
+});
+$("#random").click(function () {
+    var search = foods[random];
+    random = Math.floor(Math.random() * foods.length);
+    console.log(search);
+});
 // var italianChk = $("#italianChk");
 // var asianChk = $("#asainChk");
 // var mexicanChk = $("#mexicanChk");
@@ -350,34 +452,6 @@ $("#search").click(function () {
     // console.log(searchTrack);
     // console.log(JSON.stringify(search))
 });
-
-// $("#italian").click(function () {
-//     var search = "italian"
-//     console.log(search)
-//     event.preventDefault()
-//     apiCall(search);
-// });
-
-// $("#asian").click(function () {
-//     var search = "asian"
-//     console.log(search)
-//     event.preventDefault()
-//     apiCall(search);
-// });
-
-// $("#mexican").click(function () {
-//     var search = "mexican"
-//     console.log(search)
-//     event.preventDefault()
-//     apiCall(search);
-// });
-
-// $("#thai").click(function () {
-//     var search = "thai"
-//     console.log(search)
-//     event.preventDefault()
-//     apiCall(search);
-// });
 
 function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
     $("[data-words]").attr("data-words", function (i, d) {
