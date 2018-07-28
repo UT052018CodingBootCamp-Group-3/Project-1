@@ -33,6 +33,7 @@
 var counter;
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
+var queryURL;
 var callMin = 0;
 var callMax = 18;
 var callFood = []
@@ -124,7 +125,8 @@ function apiCall(search) {
 
     $('.header').css("display", "none")
 
-    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
+    queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -146,6 +148,8 @@ function apiCall(search) {
         //         $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
         //     }
         // }
+
+        $('.searchContent').empty() // clear the searchContent space before appending new information; on research/refine
 
         for (counter = 0; counter < response.hits.length; counter++) {
             var title = response.hits[counter].recipe.label
@@ -249,10 +253,37 @@ $("#search").click(function () {
             // console.log("else ran")
         }
         // console.log(finalFood)
-
     }
 
-    apiCall(search);
+    if ((search == "Keywords..." || search == undefined) && finalFood == undefined) {
+        alert("You need to enter atleast a keyword or check a 'Type of Food' checkbox")
+    } else if (finalFood == undefined) {
+        apiCall(search) //individual testing call; need to move to end of function when done
+    } else if (search == "Keywords..." || search == undefined) {
+        // console.log("Will Run CheckBox Search")
+        search = finalFood
+        // console.log(search)
+        apiCall(search) //individual testing call; need to move to end of function when done
+    } else {
+        search += "+" + finalFood //adding both search keyword and checkbox criteria
+        // console.log(search)
+        apiCall(search) //individual testing call; need to move to end of function when done
+    }
+
+    for (a = 0; a < callDiet.length; a++) {
+        if (callDiet.length = 1) {
+            finalDiet = callDiet
+        }
+        else {
+            finalDiet += "+" + callDiet
+        }
+    }
+    // console.log(finalDiet)
+    // if(finalDiet == undefined){
+    // }else{
+    //     queryURL.append("hello")
+    //     console.log(queryURL)
+    // }
 
     // if (italianChk[0].checked) {
     //     var search = "italian " + $("#searchFood").val();
