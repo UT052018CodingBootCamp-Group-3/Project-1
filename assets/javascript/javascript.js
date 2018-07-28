@@ -27,6 +27,8 @@ var ingredientsTrack5 = [];
 var ingredientsTrack6 = [];
 var pickFood = foods[random];
 var holder = [];
+var prices = [];
+var total = 0;
 
 function contentSetup(a, title, serve, calories, dietLabels, healthLabels, image) {
     $('.searchContent').append(`
@@ -62,7 +64,7 @@ function apiCall(search) {
             holder.push(response.hits[w].recipe.ingredientLines);
         }
         for (let i = 0; i < 6; i++) {
-            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + Math.round(response.hits[i].recipe.calories) + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + Math.round(response.hits[i].recipe.calories) + "<br> <img class = 'float-left' src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left' id='ing" + i + "' > ingredients: </div></div>");
 
         }
         for (let i = 0; i < 6; i++) {
@@ -91,11 +93,63 @@ function apiCall2(search2) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-        $("#walmart").append(response.items[0].name)
-        $("#walmart").append(response.items[1].name)
+        $("#walmart").empty();
+        for (let i = 0; i < response.items.length; i++) {
+            $("#walmart").append(response.items[i].name + "<br> sale price: <p id = 'price" + i + "' value = '" + response.items[i].salePrice +"'>$" + response.items[i].salePrice + "</p><br> <br>")
+     }
     });
 }
-
+$(document).on("click", "#price0", function(){
+    prices.push(Number(document.getElementById("price0").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price1", function(){
+    prices.push(Number(document.getElementById("price1").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price2", function(){
+    prices.push(Number(document.getElementById("price2").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price3", function(){
+    prices.push(Number(document.getElementById("price3").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price4", function(){
+    prices.push(Number(document.getElementById("price4").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price5", function(){
+    prices.push(Number(document.getElementById("price5").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price6", function(){
+    prices.push(Number(document.getElementById("price6").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price7", function(){
+    prices.push(Number(document.getElementById("price7").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price8", function(){
+    prices.push(Number(document.getElementById("price8").getAttribute("value")));
+    console.log(prices);
+});
+$(document).on("click", "#price9", function(){
+    prices.push(Number(document.getElementById("price9").getAttribute("value")));
+    console.log(prices);
+});
+$("#calc").click( function () {
+    for (let i = 0; i < prices.length; i++) {
+        total = total + prices[i];
+    }
+    $("#total").text(total);
+});
+$("#calcClear").click(function () {
+    $("#total").text("");
+    total = 0;
+    prices =  [];
+});
 $(".healthMore").on("click", function () {
     event.preventDefault();
     var status = $(".healthMore").text()
