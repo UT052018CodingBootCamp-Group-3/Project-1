@@ -1,106 +1,175 @@
+@font-face {
+    font-family: 'CustomFontCursive';
+    src: url('../font/AguafinaScript-Regular.ttf'); /* IE9 Compat Modes */
+  }
+
 div{
     /* border: .1px;
     border-style: solid;
     border-color: aquamarine; */
     opacity: 1; 
     color: black;
-    
 }
 
-body{
-    
-   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
-    background-size:     cover;                     
-    background-repeat:   no-repeat;
-    background-position: center top left;
-    margin: 25px;
+small{
+    background-color: #e1ecf4;
+    color: #39739d;
+    padding: 5px 5px;
+    margin: 0px 2px;
+    display: inline-block;
 }
 
-h3{
-    color:white;
-}
-
-input#bar{
-    width:70%;
-}
-input[type=submit]{
-    width: 30%;
-}
-
-/* div{
-    border: .1px;
-    border-style: solid;
-    border-color: aquamarine;
-    opacity: 1; 
-    color: black;
-} */
-
-body{
-    
-   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
-    background-size:     cover;                     
-    background-repeat:   no-repeat;
-    background-position: center top left;
-    margin: 25px;
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
 }
 
 h3{
     color:white;
 }
 
-input#bar{
-    width:70%;
-}
-input[type=submit]{
+input[class=submit]{
     width: 30%;
+    margin: 0px;
     float: right;
 }
 
+input[class=submit2]{
+    width: 100%;
+    margin: 0px;
+    height: 35px;
+}
 
+body{
+    
+   background-image: url(https://wallpapercave.com/wp/ZDRooQC.jpg);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    margin: auto;
+    padding: 50px 0px;
+    width: 1000px;
+}
+
+.header{
+    height: 40px;
+    font-size: 50px;
+    font-family: CustomFontCursive;
+    padding-left: 50px;
+    display: block;
+}
+
+.subHead{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: lightslategray;
+    height: 30px;
+    padding: 10px;
+    margin: 20px 0px 0px 0px;
+}
+
+.subFoot{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: lightslategray;
+    height: 20px;
+    margin: 0px;
+}
 
 .hiddenHealth{
     display: none;
 }
 
 .healthMore{
-    display: block;
-    color: white;
     text-align: right;
-    padding: 0px 5px;
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+/* NEED TO LEARN nth-child call */
+.searchContent .col-sm-12.hiddenItem:nth-child(n+7) { 
+    display: none;
+}
+
+/* .ingredientCol:nth-child(n) { 
+    display: none;
+} */
+
+.moreResult{
+    text-align: center;
+    background-color: white;
+    color: #39739d;
+    padding: 15px 0px;
+    margin-top: 50px;
+}
+
+.searchContent{
+    width:  100%;
+}
+
+.searchContent .col-sm-12 .col-sm-9{
+    margin-bottom: 10px;
+
+}
+
+
+.contItem{
+    border-radius: 15px;
+    background-color: white;
+    padding: 15px;
+    margin: 0px; 
 }
 
 .form-check{
     height: 27px;
-    padding: 10px;
+    padding: 0px 10px;
     
 }
+
 .form-check-label{
-    color: lightgrey;
-    
+    color: lightgrey;    
 }
-u{
-    color: white;
-}
+
 .row.content {
     height: 550px;
 }
+
 .sidenav {
   height: auto;
   font-family: serif, ;
-  font-size: 20px;
+  font-size: 15px;
   color: whitesmoke;
 }
+
+.foodImg{
+    width: 100%;
+    height: 100%;
+}
+
+.move {
+    position: relative;
+    margin-left: 315px;
+    top: -300px;
+}
+
 #searchFood{
     height: 35px;
     width: 70%;
-    font-size: 20pt;
+    font-size: 15pt;
+    padding: 10px;
+    margin: 0px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: whitesmoke;
 }
+
 #search{
     height: 35px;
     text-align: auto;
 }
+
+/* 
+@media screen and (max-width: px) {
 #searchWm{
     width: 100%
 
@@ -114,10 +183,17 @@ u{
    
 @media screen and (max-width: 767px) {
   .row.content {height: auto;} 
+} */
+
+
+[data-words]{
+    vertical-align: top;
+    position: static;
 }
 
-.move {
-    position: relative;
-    margin-left: 315px;
-    top: -300px;
+[data-words] > span{
+    position: absolute;
+    color: chocolate;
+    font-size: 50px;
+    font-family: CustomFontCursive;
 }
