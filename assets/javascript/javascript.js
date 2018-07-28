@@ -29,6 +29,13 @@ var ingredientsTrack6 = [];
 var pickFood = foods[random];
 var holder = [];
 
+// API Call Critera
+var callMin = 0;
+var callMax = 18;
+
+//Content Counter for col-sm-6 every 2 gets a break
+var divCounter = 0;
+
 var typefood = ["italian", "asian", "mexican", "american"]
 var diet = ["balanced", "high-fiber", "high-protein", "low-carb", "low-fat", "low-sodium"]
 var foodlabel = [
@@ -86,22 +93,24 @@ function navSetup() {
     $('.3rd').append(`<div class="subFoot healthMore">SEE MORE</div>`)
 }
 
-
-
 function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
-    $('.searchContent').append(`
-        <div class="col-sm-6">
-        <div class="well listing" id="target${counter}">
-        <div><h1>${title}</h1></div>
-        <div>Serving Size: ${serve}</div>
-        <div>Calories per Serving: ${calories}</div>
-        <div>Health Labels: ${healthlabel}</div>
-        <div><img class="foodImg" src="${image}"></img></div>
-        <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
-        </div>
-    `)
-
-    console.log("Content Setup Ran")
+    if (counter < 9) {
+        $('.searchContent').append(`
+            <div class="col-sm-3">${counter}
+            <div class="well" id="target${counter}">
+            <div><h1>${title}</h1></div>
+            <div>Serving Size: ${serve}</div>
+            <div>Calories per Serving: ${calories}</div>
+            <div>Health Labels: ${healthlabel}</div>
+            <div><img class="foodImg" src="${image}"></img></div>
+            <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
+            </div>
+            `)
+            if(counter%2 == 0){
+                $('.searchContent').append(`<br>adding line break`)
+            }
+    } else {
+    }
 }
 
 function apiCall(search) {
@@ -109,7 +118,7 @@ function apiCall(search) {
     $('.well.header').css("display", "none")
     var id = "15bdf952"
     var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&health=peanut-free&from=0&to=6`
+    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
 
     $.ajax({
         url: queryURL,
@@ -130,7 +139,7 @@ function apiCall(search) {
             }
         }
 
-        for (counter = 0; counter < 6; counter++) {
+        for (counter = 0; counter < response.hits.length; counter++) {
             var title = response.hits[counter].recipe.label
             var serve = response.hits[counter].recipe.yield
             var calories = Math.round(response.hits[counter].recipe.calories / serve)
@@ -149,10 +158,12 @@ function apiCall(search) {
             contentSetup(counter, title, serve, calories, image, url, healthlabel)
             healthlabel = undefined // Resetting healthLabel for next iteration of labels
         }
+        $('.searchContent').append(`<div class="col-sm-12 moreResult">SEE 6 MORE RESULTS</div>`)
+
     });
 }
 
-$('.3rd').on('click','.healthMore', function () { //IMPORTANT FOR THIS; DYNAMICALLY CREATED ITEMS CAN NOT BE CALLED REGULARLY
+$('.3rd').on('click', '.healthMore', function () { //IMPORTANT FOR THIS; DYNAMICALLY CREATED ITEMS CAN NOT BE CALLED REGULARLY
     // event.preventDefault();
 
     var status = $(".subFoot.healthMore").text()
@@ -275,4 +286,4 @@ function titleCase(str) {
 
 // dataWord() // NEED THIS; RECOMMENT WHEN DONE
 navSetup()
-// apiCall("chicken") // TESTING CALL WIHTOUT TYPING
+apiCall("rice coconut bean") // TESTING CALL WIHTOUT TYPING

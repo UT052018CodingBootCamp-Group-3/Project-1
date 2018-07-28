@@ -4,9 +4,9 @@
   }
 
 div{
-    /* border: .1px;
+    border: .1px;
     border-style: solid;
-    border-color: aquamarine; */
+    border-color: aquamarine;
     opacity: 1; 
     color: black;
 }
@@ -83,6 +83,13 @@ body{
 
 .healthMore{
     text-align: center;
+}
+
+.moreResult{
+    text-align: center;
+    background-color: white;
+    color: #39739d;
+    padding: 15px 0px;
 }
 
 .searchContent{
