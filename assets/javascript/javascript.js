@@ -120,7 +120,7 @@ function contentSetup(counter, title, serve, calories, image, url, healthlabel, 
         `)
 }
 
-function apiCall(search, callFood, callDiet, callLabel) {
+function apiCall(search) {
 
     $('.header').css("display", "none")
 
@@ -236,20 +236,23 @@ $("#search").click(function () {
     var finalDiet;
     var finalLabel;
 
-for(a = 0 ; a < callFood.length; a++){
-    if(finalFood == undefined){
-        finalFood = callFood[a]
-        // console.log("if ran")
-    }
-    else{
-        finalFood += "+" + callFood[a]
-        // console.log("else ran")
-    }
-    // console.log(finalFood)
+    search = document.getElementById("searchFood").value
+    // console.log(search) // Working
 
-}
+    for (a = 0; a < callFood.length; a++) {
+        if (finalFood == undefined) {
+            finalFood = callFood[a]
+            // console.log("if ran")
+        }
+        else {
+            finalFood += "+" + callFood[a]
+            // console.log("else ran")
+        }
+        // console.log(finalFood)
 
-    apiCall(search, callFood, callDiet, callLabel);
+    }
+
+    apiCall(search);
 
     // if (italianChk[0].checked) {
     //     var search = "italian " + $("#searchFood").val();
