@@ -1,36 +1,36 @@
 
 // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
-    authDomain: "project-1-88731.firebaseapp.com",
-    databaseURL: "https://project-1-88731.firebaseio.com",
-    projectId: "project-1-88731",
-    storageBucket: "project-1-88731.appspot.com",
-    messagingSenderId: "742279473370"
-};
-firebase.initializeApp(config);
+// var config = {
+//     apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
+//     authDomain: "project-1-88731.firebaseapp.com",
+//     databaseURL: "https://project-1-88731.firebaseio.com",
+//     projectId: "project-1-88731",
+//     storageBucket: "project-1-88731.appspot.com",
+//     messagingSenderId: "742279473370"
+// };
+// firebase.initializeApp(config);
 
-var database = firebase.database();
+// var database = firebase.database();
 
-var proxy = 'https://cors-anywhere.herokuapp.com/';
-var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
-var random = Math.floor(Math.random() * foods.length);
-var counter;
-var pickFood = foods[random];
-var ingredients = [];
-var ingredients = [];
-var searchTrack = [];
-var foodCount = 0;
-var ingredientsTrack1 = [];
-var ingredientsTrack2 = [];
-var ingredientsTrack3 = [];
-var ingredientsTrack4 = [];
-var ingredientsTrack5 = [];
-var ingredientsTrack6 = [];
-var pickFood = foods[random];
-var holder = [];
+// var proxy = 'https://cors-anywhere.herokuapp.com/';
+// var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
+// var random = Math.floor(Math.random() * foods.length);
+// var pickFood = foods[random];
+// var ingredients = [];
+// var ingredients = [];
+// var searchTrack = [];
+// var foodCount = 0;
+// var ingredientsTrack1 = [];
+// var ingredientsTrack2 = [];
+// var ingredientsTrack3 = [];
+// var ingredientsTrack4 = [];
+// var ingredientsTrack5 = [];
+// var ingredientsTrack6 = [];
+// var pickFood = foods[random];
+// var holder = [];
 
 // API Call Critera
+var counter;
 var id = "15bdf952"
 var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var callMin = 0;
@@ -64,7 +64,7 @@ function navSetup() {
     for (navSetupCounter = 0; navSetupCounter < typefood.length; navSetupCounter++) {
         $('.1st').append(`
         <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="${typefood[navSetupCounter]}">
+        <input type="checkbox" class="form-check-input" value="${typefood[navSetupCounter]}" id="${typefood[navSetupCounter]}" onclick="typeoffood(${typefood[navSetupCounter]})">
         <label class="form-check-label" for="box1">${titleCase(typefood[navSetupCounter])}</label>
         </div>
         `)
@@ -74,7 +74,7 @@ function navSetup() {
     for (navSetupCounter = 0; navSetupCounter < diet.length; navSetupCounter++) {
         $('.2nd').append(`
         <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="${diet[navSetupCounter]}">
+        <input type="checkbox" class="form-check-input" value="${diet[navSetupCounter]}" id="${diet[navSetupCounter]}" onclick="dietSpecific('${diet[navSetupCounter]}')">
         <label class="form-check-label" for="box1">${titleCase(diet[navSetupCounter])}</label>
         </div>
         `)
@@ -85,14 +85,14 @@ function navSetup() {
         if (navSetupCounter < 6) {
             $('.3rd').append(`
             <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="${foodlabel[navSetupCounter]}">
+            <input type="checkbox" class="form-check-input" value="${foodlabel[navSetupCounter]}" id="${foodlabel[navSetupCounter]}" onclick="healthLabel('${foodlabel[navSetupCounter]}')">
             <label class="form-check-label" for="box1">${titleCase(foodlabel[navSetupCounter])}</label>
             </div>
         `)
         } else {
             $('.3rd').append(`
             <div class="form-check hiddenHealth">
-            <input type="checkbox" class="form-check-input" id="${foodlabel[navSetupCounter]}">
+            <input type="checkbox" class="form-check-input" value="${foodlabel[navSetupCounter]}" id="${foodlabel[navSetupCounter]}" onclick="healthLabel('${foodlabel[navSetupCounter]}')">
             <label class="form-check-label" for="box1">${titleCase(foodlabel[navSetupCounter])}</label>
             </div>
             `)
@@ -120,7 +120,7 @@ function contentSetup(counter, title, serve, calories, image, url, healthlabel, 
         `)
 }
 
-function apiCall(search) {
+function apiCall(search, callFood, callDiet, callLabel) {
 
     $('.header').css("display", "none")
 
@@ -135,7 +135,10 @@ function apiCall(search) {
         //     holder.push(response.hits[w].recipe.ingredientLines);
         // }
         // for (let i = 0; i < 6; i++) {
-        //     $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+        //     $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label +
+        //"<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " +
+        // response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class
+        // = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
 
         // }
         // for (let i = 0; i < 6; i++) {
@@ -208,84 +211,104 @@ $('body').on('click', '.col-sm-12 .moreResult', function () {
     $('.searchContent .col-sm-12.hiddenItem:hidden').slice(0, 6).slideDown();
 });
 
-var italianChk = $("#italianChk");
-var asianChk = $("#asainChk");
-var mexicanChk = $("#mexicanChk");
-var americanChk = $("#americanChk");
+// var italianChk = $("#italianChk");
+// var asianChk = $("#asainChk");
+// var mexicanChk = $("#mexicanChk");
+// var americanChk = $("#americanChk");
 
-$("#random").click(function () {
-    var search = foods[random];
-    random = Math.floor(Math.random() * foods.length);
-    console.log(search);
-    event.preventDefault();
-    apiCall(search);
-});
-var objSearch = {
-    food: search,
-    count: 0
-}
+// $("#random").click(function () {
+//     var search = foods[random];
+//     random = Math.floor(Math.random() * foods.length);
+//     console.log(search);
+//     event.preventDefault();
+//     apiCall(search);
+// });
+
+// var objSearch = {
+//     food: search,
+//     count: 0
+// }
+
 $("#search").click(function () {
     event.preventDefault();
 
-    if (italianChk[0].checked) {
-        var search = "italian " + $("#searchFood").val();
-    } else if (asianChk[0].checked) {
-        var search = "asain " + $("#searchFood").val();
-    } else if (mexicanChk[0].checked) {
-        var search = "mexican " + $("#searchFood").val();
-    } else if (americanChk[0].checked) {
-        var search = "american " + $("#searchFood").val();
-    } else {
-        var search = $("#searchFood").val();
-    }
+    var finalFood;
+    var finalDiet;
+    var finalLabel;
 
-    if (!(searchTrack.includes(search))) {
-        searchTrack.push(search);
-        objSearch.count = 0;
-        objSearch.count += 1;
-        console.log(objSearch.count)
-        database.ref().child(search).set({
-            count: objSearch.count
-        })
-    } else {
-        objSearch.count += 1;
-        database.ref(search).set({
-            count: objSearch.count
-        })
+for(a = 0 ; a < callFood.length; a++){
+    if(finalFood == undefined){
+        finalFood = callFood[a]
+        // console.log("if ran")
     }
+    else{
+        finalFood += "+" + callFood[a]
+        // console.log("else ran")
+    }
+    // console.log(finalFood)
+
+}
+
+    apiCall(search, callFood, callDiet, callLabel);
+
+    // if (italianChk[0].checked) {
+    //     var search = "italian " + $("#searchFood").val();
+    // } else if (asianChk[0].checked) {
+    //     var search = "asain " + $("#searchFood").val();
+    // } else if (mexicanChk[0].checked) {
+    //     var search = "mexican " + $("#searchFood").val();
+    // } else if (americanChk[0].checked) {
+    //     var search = "american " + $("#searchFood").val();
+    // } else {
+    //     var search = $("#searchFood").val();
+    // }
+
+    // if (!(searchTrack.includes(search))) {
+    //     searchTrack.push(search);
+    //     objSearch.count = 0;
+    //     objSearch.count += 1;
+    //     console.log(objSearch.count)
+    //     database.ref().child(search).set({
+    //         count: objSearch.count
+    //     })
+    // } else {
+    //     objSearch.count += 1;
+    //     database.ref(search).set({
+    //         count: objSearch.count
+    //     })
+    // }
 
     // console.log(searchTrack);
     // console.log(JSON.stringify(search))
-    apiCall(search);
 });
 
-$("#italian").click(function () {
-    var search = "italian"
-    console.log(search)
-    event.preventDefault()
-    apiCall(search);
-});
+// $("#italian").click(function () {
+//     var search = "italian"
+//     console.log(search)
+//     event.preventDefault()
+//     apiCall(search);
+// });
 
-$("#asian").click(function () {
-    var search = "asian"
-    console.log(search)
-    event.preventDefault()
-    apiCall(search);
-});
+// $("#asian").click(function () {
+//     var search = "asian"
+//     console.log(search)
+//     event.preventDefault()
+//     apiCall(search);
+// });
 
-$("#mexican").click(function () {
-    var search = "mexican"
-    console.log(search)
-    event.preventDefault()
-    apiCall(search);
-});
+// $("#mexican").click(function () {
+//     var search = "mexican"
+//     console.log(search)
+//     event.preventDefault()
+//     apiCall(search);
+// });
 
-$("#thai").click(function () {
-    var search = "thai"
-    console.log(search)
-    event.preventDefault()
-    apiCall(search);
-});
+// $("#thai").click(function () {
+//     var search = "thai"
+//     console.log(search)
+//     event.preventDefault()
+//     apiCall(search);
+// });
 
 function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
     $("[data-words]").attr("data-words", function (i, d) {
@@ -316,6 +339,54 @@ function titleCase(str) {
     return str.join('-');
 }
 
+function typeoffood(value) {
+    var typecast = value.value
+    if (callFood.includes(value.value)) {
+        remove(callFood, typecast)
+    }
+    else {
+        callFood.push(value.value)
+    }
+    console.log(callFood)
+}
+
+function dietSpecific(value) {
+    // console.log(value)
+    // console.log(document.getElementById(value).value)
+
+    var typecast = document.getElementById(value).value
+    if (callDiet.includes(typecast)) {
+        remove(callDiet, typecast)
+    }
+    else {
+        callDiet.push(typecast)
+    }
+    console.log(callDiet)
+}
+
+function healthLabel(value) {
+    var typecast = document.getElementById(value).value
+    if (callLabel.includes(typecast)) {
+        remove(callLabel, typecast)
+    }
+    else {
+        callLabel.push(typecast)
+    }
+    console.log(callLabel)
+}
+
+function remove(arr) { //Custom Remove Function for array
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax = arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+
 // dataWord() // NEED THIS; RECOMMENT WHEN DONE
 navSetup()
-apiCall("rice coconut bean") // TESTING CALL WIHTOUT TYPING
+// apiCall("rice") // TESTING CALL WIHTOUT TYPING
