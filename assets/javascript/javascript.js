@@ -29,6 +29,65 @@ var ingredientsTrack6 = [];
 var pickFood = foods[random];
 var holder = [];
 
+var typefood = ["italian", "asian", "mexican", "american"]
+var diet = ["balanced", "high-fiber", "high-protein", "low-carb", "low-fat", "low-sodium"]
+var foodlabel = [
+    "alcohol-free", "celery-free", "crustacean-free", "dairy-free", "egg-free",
+    "fish-free", "gluten-free", "kidney-friendly", "kosher", "low-potassium",
+    "lupine-free", "mustard-free", "no-oil-added", "low-sugar", "paleo",
+    "peanut-free", "pescatarian", "pork-free", "red-meat-free", "sesame-free",
+    "shellfish-free", "soy-free", "sugar-conscious", "tree-nut-free", "vegan",
+    "vegetarian", "wheat-free"]
+
+function navSetup() {
+    var navSetupCounter;
+
+    typefood = typefood.sort();
+    diet = diet.sort();
+    foodlabel = foodlabel.sort();
+
+    for (navSetupCounter = 0; navSetupCounter < typefood.length; navSetupCounter++) {
+        $('.1st').append(`
+        <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="${typefood[navSetupCounter]}">
+        <label class="form-check-label" for="box1">${titleCase(typefood[navSetupCounter])}</label>
+        </div>
+        `)
+    }
+    $('.1st').append(`<div class="subFoot"></div>`)
+
+    for (navSetupCounter = 0; navSetupCounter < diet.length; navSetupCounter++) {
+        $('.2nd').append(`
+        <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="${diet[navSetupCounter]}">
+        <label class="form-check-label" for="box1">${titleCase(diet[navSetupCounter])}</label>
+        </div>
+        `)
+    }
+    $('.2nd').append(`<div class="subFoot"></div>`)
+
+    for (navSetupCounter = 0; navSetupCounter < foodlabel.length; navSetupCounter++) {
+        if (navSetupCounter < 6) {
+            $('.3rd').append(`
+            <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="${foodlabel[navSetupCounter]}">
+            <label class="form-check-label" for="box1">${titleCase(foodlabel[navSetupCounter])}</label>
+            </div>
+        `)
+        } else {
+            $('.3rd').append(`
+            <div class="form-check hiddenHealth">
+            <input type="checkbox" class="form-check-input" id="${foodlabel[navSetupCounter]}">
+            <label class="form-check-label" for="box1">${titleCase(foodlabel[navSetupCounter])}</label>
+            </div>
+            `)
+        }
+    }
+    $('.3rd').append(`<div class="subFoot healthMore">SEE MORE</div>`)
+}
+
+
+
 function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
     $('.searchContent').append(`
         <div class="col-sm-6">
@@ -93,18 +152,16 @@ function apiCall(search) {
     });
 }
 
-$('.healthMore.subFoot').on("click", function () {
-    event.preventDefault();
+$('.3rd').on('click','.healthMore', function () { //IMPORTANT FOR THIS; DYNAMICALLY CREATED ITEMS CAN NOT BE CALLED REGULARLY
+    // event.preventDefault();
 
-    console.log("See More Clicked")
-
-    var status = $(".healthMore").text()
+    var status = $(".subFoot.healthMore").text()
     if (status === 'SEE MORE') {
         $(".hiddenHealth").css("display", "block")
-        $(".healthMore").text("SEE LESS")
+        $(".subFoot.healthMore").text("SEE LESS")
     } else {
         $(".hiddenHealth").css("display", "none")
-        $(".healthMore").text("SEE MORE")
+        $(".subFoot.healthMore").text("SEE MORE")
     }
 });
 
@@ -154,8 +211,8 @@ $("#search").click(function () {
         })
     }
 
-    console.log(searchTrack);
-    console.log(JSON.stringify(search))
+    // console.log(searchTrack);
+    // console.log(JSON.stringify(search))
     apiCall(search);
 });
 
@@ -188,20 +245,15 @@ $("#thai").click(function () {
 });
 
 function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
-
-
     $("[data-words]").attr("data-words", function (i, d) {
         var $self = $(this),
             $words = d.split("|"),
             tot = $words.length,
             c = 0;
-
         // CREATE SPANS INSIDE SPAN
         for (var i = 0; i < tot; i++) $self.append($('<span/>', { text: $words[i] }));
-
         // COLLECT WORDS AND HIDE
         $words = $self.find("span").hide();
-
         // ANIMATE AND LOOP
         (function loop() {
             $self.animate({ width: $words.eq(c).width() });
@@ -209,9 +261,18 @@ function dataWord(condition) { //NOT OUR CODE: BORROWED FROM ONLINE SOURCES
             c = ++c % tot;
             // console.log("Text Rotation") //Working
         }());
-
     });
 }
 
-dataWord()
-apiCall("chicken")
+
+function titleCase(str) {
+    str = str.toLowerCase().split('-');
+    for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join('-');
+}
+
+// dataWord() // NEED THIS; RECOMMENT WHEN DONE
+navSetup()
+// apiCall("chicken") // TESTING CALL WIHTOUT TYPING
