@@ -4,9 +4,9 @@
   }
 
 div{
-    border: .1px;
+    /* border: .1px;
     border-style: solid;
-    border-color: aquamarine;
+    border-color: aquamarine; */
     opacity: 1; 
     color: black;
 }
@@ -52,7 +52,7 @@ body{
     width: 1000px;
 }
 
-.well.header{
+.header{
     height: 40px;
     font-size: 50px;
     font-family: CustomFontCursive;
@@ -85,15 +85,33 @@ body{
     text-align: center;
 }
 
+/* NEED TO LEARN nth-child call */
+.searchContent .col-sm-12.hiddenItem:nth-child(n+7) { 
+    display: none;
+  }
+
 .moreResult{
     text-align: center;
     background-color: white;
     color: #39739d;
     padding: 15px 0px;
+    margin-top: 50px;
 }
 
 .searchContent{
     width:  100%;
+}
+
+.searchContent .col-sm-12 .col-sm-9{
+    margin: 20px 0px;
+
+}
+
+.contItem{
+    border-radius: 15px;
+    background-color: white;
+    padding: 15px;
+    margin: 0px; 
 }
 
 .form-check{

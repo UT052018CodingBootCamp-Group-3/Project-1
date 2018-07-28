@@ -94,28 +94,24 @@ function navSetup() {
 }
 
 function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
-    if (counter < 9) {
-        $('.searchContent').append(`
-            <div class="col-sm-3">${counter}
-            <div class="well" id="target${counter}">
+    $('.searchContent').append(`
+        <div class="col-sm-12 hiddenItem">
+            <div class="col-sm-3"><img class="foodImg" src="${image}"></img></div>
+            <div class="col-sm-9">
+            <div class="contItem" id="target${counter}">
             <div><h1>${title}</h1></div>
             <div>Serving Size: ${serve}</div>
             <div>Calories per Serving: ${calories}</div>
             <div>Health Labels: ${healthlabel}</div>
-            <div><img class="foodImg" src="${image}"></img></div>
             <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
-            </div>
-            `)
-            if(counter%2 == 0){
-                $('.searchContent').append(`<br>adding line break`)
-            }
-    } else {
-    }
+            </div></div>
+        </div>
+        `)
 }
 
 function apiCall(search) {
 
-    $('.well.header').css("display", "none")
+    $('.header').css("display", "none")
     var id = "15bdf952"
     var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
     var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
@@ -163,6 +159,8 @@ function apiCall(search) {
     });
 }
 
+
+//NAVIGATION BAR SEE MORE
 $('.3rd').on('click', '.healthMore', function () { //IMPORTANT FOR THIS; DYNAMICALLY CREATED ITEMS CAN NOT BE CALLED REGULARLY
     // event.preventDefault();
 
@@ -174,6 +172,14 @@ $('.3rd').on('click', '.healthMore', function () { //IMPORTANT FOR THIS; DYNAMIC
         $(".hiddenHealth").css("display", "none")
         $(".subFoot.healthMore").text("SEE MORE")
     }
+});
+
+
+// SEE 6 MORE RESULTS
+$('body').on('click', function () {
+    console.log("Clicked More Result")
+
+    $('.searchContent .col-sm-12.hiddenItem:hidden').slice(0, 6).slideDown();
 });
 
 var italianChk = $("#italianChk");
