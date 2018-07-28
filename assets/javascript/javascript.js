@@ -11,6 +11,7 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+
 var proxy = 'https://cors-anywhere.herokuapp.com/';
 var foods = ["steak", "fish", "chicken", "tacos", "rice", "potatos", "sushi", "apples"];
 var random = Math.floor(Math.random() * foods.length);
@@ -30,8 +31,15 @@ var pickFood = foods[random];
 var holder = [];
 
 // API Call Critera
+var id = "15bdf952"
+var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
 var callMin = 0;
 var callMax = 18;
+var callFood = []
+var callDiet = []
+var callLabel = []
+
+//FINAL API URL
 
 //Content Counter for col-sm-6 every 2 gets a break
 var divCounter = 0;
@@ -93,18 +101,21 @@ function navSetup() {
     $('.3rd').append(`<div class="subFoot healthMore">SEE MORE</div>`)
 }
 
-function contentSetup(counter, title, serve, calories, image, url, healthlabel) {
+function contentSetup(counter, title, serve, calories, image, url, healthlabel, ingredient) {
     $('.searchContent').append(`
         <div class="col-sm-12 hiddenItem">
             <div class="col-sm-3"><img class="foodImg" src="${image}"></img></div>
-            <div class="col-sm-9">
-            <div class="contItem" id="target${counter}">
-            <div><h1>${title}</h1></div>
-            <div>Serving Size: ${serve}</div>
-            <div>Calories per Serving: ${calories}</div>
-            <div>Health Labels: ${healthlabel}</div>
-            <div><input type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
-            </div></div>
+                 <div class="col-sm-9">
+                      <div class="contItem" id="target${counter}">
+                      <div><h1>${title}</h1></div>
+                      <div>Serving Size: ${serve}</div>
+                      <div>Calories per Serving: ${calories}</div>
+                      <div>Health Labels: ${healthlabel}</div>
+                      <div><input class="contentBtn" type="submit" value="SEE FULL RECEIPE" onclick="window.open('${url}')"></input></div>
+                      <div><input type="submit" value="OPEN INGREDIENTS LIST"></input></div>
+                      <div>${ingredient}</div>
+                 </div>
+            </div>
         </div>
         `)
 }
@@ -112,28 +123,26 @@ function contentSetup(counter, title, serve, calories, image, url, healthlabel) 
 function apiCall(search) {
 
     $('.header').css("display", "none")
-    var id = "15bdf952"
-    var appKey = "f46dd27595c9f290dd53bcdc138f4b79"
-    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
 
+    var queryURL = `https://api.edamam.com/search?q=${search}&app_id=${id}&app_key=${appKey}&from=${callMin}&to=${callMax}`
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         console.log(response);
 
-        for (let w = 0; w < 6; w++) {
-            holder.push(response.hits[w].recipe.ingredientLines);
-        }
-        for (let i = 0; i < 6; i++) {
-            $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
+        // for (let w = 0; w < 6; w++) {
+        //     holder.push(response.hits[w].recipe.ingredientLines);
+        // }
+        // for (let i = 0; i < 6; i++) {
+        //     $("#target" + i).html("<div class = 'float-left'> Recipe: " + response.hits[i].recipe.label + "<br> recipe URL: <a src=" + response.hits[i].recipe.url + ">" + response.hits[i].recipe.url + "</a><br> calories: " + response.hits[i].recipe.calories + "<br> <img src=" + response.hits[i].recipe.image + "> <br><br> <div class = 'float-left move' id='ing" + i + "' > ingredients: </div></div>");
 
-        }
-        for (let i = 0; i < 6; i++) {
-            for (let w = 0; w < holder[i].length; w++) {
-                $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
-            }
-        }
+        // }
+        // for (let i = 0; i < 6; i++) {
+        //     for (let w = 0; w < holder[i].length; w++) {
+        //         $("#ing" + i).append("<br> " + holder[i][w] + "<br>");
+        //     }
+        // }
 
         for (counter = 0; counter < response.hits.length; counter++) {
             var title = response.hits[counter].recipe.label
@@ -141,7 +150,18 @@ function apiCall(search) {
             var calories = Math.round(response.hits[counter].recipe.calories / serve)
             var image = response.hits[counter].recipe.image
             var url = response.hits[counter].recipe.url
+
+            var ingredient;
             var healthlabel;
+
+            for (ingCounter = 0; ingCounter < response.hits[counter].recipe.ingredientLines.length; ingCounter++) {
+                if (ingredient == undefined) {
+                    ingredient = `<small>${response.hits[counter].recipe.ingredientLines[ingCounter]}</small>`
+                }
+                else {
+                    ingredient += `<small>${response.hits[counter].recipe.ingredientLines[ingCounter]}</small>`
+                }
+            }
 
             for (healthCounter = 0; healthCounter < response.hits[counter].recipe.healthLabels.length; healthCounter++) {
                 if (healthlabel == undefined) {
@@ -151,8 +171,9 @@ function apiCall(search) {
                     healthlabel += `<small>${response.hits[counter].recipe.healthLabels[healthCounter]}</small>`
                 }
             }
-            contentSetup(counter, title, serve, calories, image, url, healthlabel)
+            contentSetup(counter, title, serve, calories, image, url, healthlabel, ingredient)
             healthlabel = undefined // Resetting healthLabel for next iteration of labels
+            ingredient = undefined // Resetting ingredient for next iteration of labels
         }
         $('.searchContent').append(`<div class="col-sm-12 moreResult">SEE 6 MORE RESULTS</div>`)
 
@@ -174,9 +195,14 @@ $('.3rd').on('click', '.healthMore', function () { //IMPORTANT FOR THIS; DYNAMIC
     }
 });
 
+//CONTENT PAGE; OPEN INGREDIENT
+$('body').on('click', '.ingredientBtn', function () { //IMPORTANT FOR THIS; DYNAMICALLY CREATED ITEMS CAN NOT BE CALLED REGULARLY
+    event.preventDefault();
+});
 
 // SEE 6 MORE RESULTS
-$('body').on('click', function () {
+$('body').on('click', '.col-sm-12 .moreResult', function () {
+    event.preventDefault();
     console.log("Clicked More Result")
 
     $('.searchContent .col-sm-12.hiddenItem:hidden').slice(0, 6).slideDown();

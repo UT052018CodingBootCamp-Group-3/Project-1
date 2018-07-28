@@ -14,7 +14,7 @@ div{
 small{
     background-color: #e1ecf4;
     color: #39739d;
-    padding: 2px 2px;
+    padding: 5px 5px;
     margin: 0px 2px;
     display: inline-block;
 }
@@ -63,7 +63,7 @@ body{
 .subHead{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background-color: aqua;
+    background-color: lightslategray;
     height: 30px;
     padding: 10px;
     margin: 20px 0px 0px 0px;
@@ -72,7 +72,7 @@ body{
 .subFoot{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: aqua;
+    background-color: lightslategray;
     height: 20px;
     margin: 0px;
 }
@@ -82,13 +82,19 @@ body{
 }
 
 .healthMore{
-    text-align: center;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 10px;
 }
 
 /* NEED TO LEARN nth-child call */
 .searchContent .col-sm-12.hiddenItem:nth-child(n+7) { 
     display: none;
-  }
+}
+
+/* .ingredientCol:nth-child(n) { 
+    display: none;
+} */
 
 .moreResult{
     text-align: center;
@@ -103,9 +109,10 @@ body{
 }
 
 .searchContent .col-sm-12 .col-sm-9{
-    margin: 20px 0px;
+    margin-bottom: 10px;
 
 }
+
 
 .contItem{
     border-radius: 15px;
