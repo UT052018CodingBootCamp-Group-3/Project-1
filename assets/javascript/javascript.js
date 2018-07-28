@@ -197,11 +197,25 @@ function apiCall(search) {
         }
         $('.searchContent').append(`<div class="col-sm-12 moreResult">SEE 6 MORE RESULTS</div>`)
 
-        database.ref().push({
-            Search: search
-        });
+        firebaseLog()
 
-        console.log("setting firebase")
+        // if(database.ref.child().)
+
+        // if (!(searchTrack.includes(search))) {
+        //     searchTrack.push(search);
+        //     objSearch.count = 0;
+        //     objSearch.count += 1;
+        //     console.log(objSearch.count)
+        //     database.ref().child(search).set({
+        //         count: objSearch.count
+        //     })
+        // } else {
+        //     objSearch.count += 1;
+        //     database.ref(search).set({
+        //         count: objSearch.count
+        //     })
+        // }
+        console.log("Firebase Running")
 
     });
 }
@@ -297,6 +311,8 @@ $("#search").click(function () {
             finalDiet += "+" + callDiet
         }
     }
+
+    firebaseLog(search)
     // console.log(finalDiet)
     // if(finalDiet == undefined){
     // }else{
@@ -428,6 +444,31 @@ function healthLabel(value) {
     console.log(callLabel)
 }
 
+function firebaseLog(search) {
+    // database.ref().on("value", function (snapshot) {
+    //     //something here to call the database infos
+    // });
+
+    database.ref().child(search).once("value", function (snapshot) {
+        // var counter = snapshot.val().count()
+        if (snapshot.exists()) {
+            console.log("Exist")
+
+
+        }
+        else {
+            database.ref().child(search).set({
+                count: 1
+            });
+            console.log("Adding Firebase")
+        }
+    });
+
+    // database.ref(search).set({
+    //     count: 2
+    // });
+}
+
 function remove(arr) { //Custom Remove Function for array
     var what, a = arguments, L = a.length, ax;
     while (L > 1 && arr.length) {
@@ -442,4 +483,5 @@ function remove(arr) { //Custom Remove Function for array
 
 // dataWord() // NEED THIS; RECOMMENT WHEN DONE
 navSetup()
+// firebaseLog()
 // apiCall("rice") // TESTING CALL WIHTOUT TYPING
