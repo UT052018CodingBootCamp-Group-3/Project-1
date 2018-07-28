@@ -1,5 +1,18 @@
 
 // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBWw4Q9Cos4t6dDtXaNm7uEluk3pw68tT4",
+    authDomain: "project1-933da.firebaseapp.com",
+    databaseURL: "https://project1-933da.firebaseio.com",
+    projectId: "project1-933da",
+    storageBucket: "",
+    messagingSenderId: "600466289342"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+// Initialize Firebase
 // var config = {
 //     apiKey: "AIzaSyArBLY0gPP8YyjMOKMDVMoaTbILXeggXV8",
 //     authDomain: "project-1-88731.firebaseapp.com",
@@ -183,6 +196,12 @@ function apiCall(search) {
             ingredient = undefined // Resetting ingredient for next iteration of labels
         }
         $('.searchContent').append(`<div class="col-sm-12 moreResult">SEE 6 MORE RESULTS</div>`)
+
+        database.ref().push({
+            Search: search
+        });
+
+        console.log("setting firebase")
 
     });
 }
